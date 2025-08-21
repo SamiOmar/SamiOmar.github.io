@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Loop App - Projekt 3</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1e90ff, #00bfff);
+            color: white;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin: 5px 0 0 0;
+        }
+
+        nav {
+            width: 100%;
+            background: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            background: transparent;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            margin-bottom: 250px;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery img {
+            width: auto;
+            max-width: 200px;
+            height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        ul {
+            list-style: none;
+            padding: 15px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        ul li {
+            margin: 15px 0;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #333 !important;
+            color: white !important;
+            padding: 20px 0 !important;
+            width: 100%;
+            flex-shrink: 0;
+            animation: none !important;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 5px;
+            background-color: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+            min-height: auto;
+        }
+
+        #project-details p:last-child {
+            margin-bottom: 100px;
+        }
+
+        #project-details h2 {
+            font-size: 2.2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #1e90ff;
+        }
+
+        #project-details h3 {
+            font-size: 1.6em;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 2px solid #1e90ff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        #project-details p {
+            font-size: 1.2em;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        /* Stil für den Email-Link in der Support-Sektion */
+        #project-details a {
+            color: #1e90ff; /* Blaue Farbe für den Link */
+            text-decoration: none; /* Entfernt die Standardunterstreichung */
+            transition: text-decoration 0.3s ease; /* Sanfter Übergang für den Hover-Effekt */
+        }
+
+        #project-details a:hover {
+            text-decoration: underline; /* Unterstreichung beim Hovern */
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            .gallery img {
+                max-width: 150px;
+                height: 300px;
+            }
+
+            .language-selector {
+                position: static;
+                margin: 20px auto;
+            }
+
+            main {
+                margin-bottom: 200px;
+            }
+
+            #project-details p:last-child {
+                margin-bottom: 80px;
+            }
+
+            #project-details h2 {
+                font-size: 1.8em;
+            }
+
+            #project-details h3 {
+                font-size: 1.4em;
+            }
+
+            #project-details p {
+                font-size: 1em;
+            }
+
+            ul li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>👨‍💻 Sami</h1>
+        <p>📱 Mobile App-Entwickler</p>
+        <nav>
+            <ul>
+                <li><a href="https://sami-ezda.com/index.php">🏠 Home</a></li>
+                <li><a href="https://sami-ezda.com/index.php">ℹ️ Über mich</a></li>
+                <li><a href="https://sami-ezda.com/index.php#skills">🛠️ Fähigkeiten</a></li>
+                <li><a href="https://sami-ezda.com/index.php#projects">📂 Projekte</a></li>
+                <li><a href="https://sami-ezda.com/index.php#contact">📧 Kontakt</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select onchange="window.location.href=this.value;">
+                <option value="projekt3.php" selected>🇩🇪 Deutsch</option>
+                <option value="projekt3-ar.php">🇸🇦 العربية</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section id="project-details">
+            <h2>🎮 Cash Loop App</h2>
+            <p>Eine <strong>iOS-App</strong> für <strong>Quizspiele</strong> und <strong>Geldprämien</strong>, die Benutzer durch das Beantworten von Fragen <strong>Belohnungen</strong> verdienen lässt, entwickelt mit <strong>SwiftUI</strong> und <strong>Firebase</strong>.</p>
+
+            <h3>📸 Bildergalerie (Hauptansichten)</h3>
+            <div class="gallery">
+                <img src="assets/images/projekt3_images/7.png" alt="Cash Loop App Bild 6">
+                <img src="assets/images/projekt3_images/8.png" alt="Cash Loop App Bild 7">
+                <img src="assets/images/projekt3_images/9.png" alt="Cash Loop App Bild 8">
+                <img src="assets/images/projekt3_images/10.png" alt="Cash Loop App Bild 9">
+                <img src="assets/images/projekt3_images/11.png" alt="Cash Loop App Bild 10">
+                <img src="assets/images/projekt3_images/12.png" alt="Cash Loop App Bild 11">
+                <img src="assets/images/projekt3_images/13.png" alt="Cash Loop App Bild 12">
+            </div>
+            <h3>📷 Bildergalerie (Zusätzliche Ansichten)</h3>
+            <div class="gallery">
+                <img src="assets/images/projekt3_images/1.png" alt="Cash Loop App Bild 1">
+                <img src="assets/images/projekt3_images/2.png" alt="Cash Loop App Bild 2">
+                <img src="assets/images/projekt3_images/3.png" alt="Cash Loop App Bild 3">
+                <img src="assets/images/projekt3_images/4.png" alt="Cash Loop App Bild 4">
+                <img src="assets/images/projekt3_images/6.png" alt="Cash Loop App Bild 5">
+                <img src="assets/images/projekt3_images/14.png" alt="Cash Loop App Bild 13">
+                <img src="assets/images/projekt3_images/15.png" alt="Cash Loop App Bild 14">
+            </div>
+
+            <h3>✨ Features</h3>
+            <ul>
+                <li><strong>Registrierung und Anmeldung:</strong> Benutzer können sich mit <strong>E-Mail</strong> 📧, <strong>Google</strong> 🔍 oder <strong>Apple</strong> 🍎 anmelden.</li>
+                <li><strong>Quizspiele:</strong> Beantworte Fragen, um <strong>Geldprämien</strong> 💰 zu gewinnen.</li>
+                <li><strong>Belohnungssystem:</strong> Verdiene <strong>XP</strong> 🌟 und <strong>Geld</strong> 💸 durch richtige Antworten.</li>
+                <li><strong>Transaktionen:</strong> Verwalte <strong>Einnahmen</strong> 📈 und <strong>Auszahlungen</strong> 📉, sieh den <strong>Transaktionsverlauf</strong> 📜, empfange <strong>Geld</strong> 💵 und sende verdientes <strong>Geld</strong> an Freunde 👥.</li>
+                <li><strong>Benutzerprofil:</strong> Zeige <strong>Level</strong> 🎖️, <strong>Ranglistenposition</strong> 🏆 und <strong>Belohnungen</strong> 🎁 an.</li>
+                <li><strong>Rangliste:</strong> Vergleiche dich mit anderen Benutzern in einer globalen <strong>Rangliste</strong> 📊.</li>
+                <li><strong>Challenges:</strong> Gewinne <strong>große Geschenke</strong> 🎉 durch das Abschließen von <strong>Challenges</strong> 🏅.</li>
+                <li><strong>Einstellungen:</strong> Passe <strong>Benutzerdaten</strong> 🖌️ und <strong>Präferenzen</strong> ⚙️ an.</li>
+            </ul>
+
+            <h3>🚀 Geplante Features</h3>
+            <ul>
+                <li><strong>Multiplayer-Modus:</strong> Tritt in <strong>Echtzeit-Quizduellen</strong> 🤝 gegen andere Spieler an.</li>
+                <li><strong>Kategorienauswahl:</strong> Wähle <strong>Quizkategorien</strong> 📚 wie Wissenschaft, Geschichte oder Popkultur.</li>
+                <li><strong>Benachrichtigungen:</strong> Erhalte <strong>Push-Benachrichtigungen</strong> 📩 für neue Quizze und Belohnungen.</li>
+                <li><strong>Freundschaftssystem:</strong> Füge Freunde hinzu und fordere sie zu <strong>Quiz-Challenges</strong> 👥 heraus.</li>
+                <li><strong>Statistiken:</strong> Erhalte detaillierte <strong>Statistiken</strong> 📊 über deine Quizleistungen und Gewinne.</li>
+            </ul>
+
+            <h3>🛠️ Technologien</h3>
+            <p><strong>Swift</strong>, <strong>SwiftUI</strong>, <strong>Xcode</strong>, <strong>Firebase Authentication</strong>, <strong>Firebase Firestore</strong>, <strong>Firebase Cloud Messaging</strong>, <strong>MVVM</strong>, <strong>RESTful APIs</strong></p>
+
+            <h3>📧 Support</h3>
+            <p>Bei Fragen: <a href="mailto:sami.omar.7345@gmail.com">sami.omar.7345@gmail.com</a></p>
+
+            <h3>👨‍💻 Mitwirkende</h3>
+            <p>Entwickelt von <strong>Sami</strong> allein als selbstständiges Projekt.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Sami</p>
+    </footer>
+</body>
+</html>

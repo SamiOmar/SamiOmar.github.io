@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami - Mobile Entwickler Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1e90ff, #00bfff);
+            color: white;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin: 5px 0 0 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 1.2em;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .profile-image-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .profile-image-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .project-item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .project-item h3 {
+            font-size: 1.4em;
+            margin: 15px 0;
+            color: #1e90ff;
+        }
+
+        .project-item p {
+            font-size: 1em;
+            padding: 0 15px 20px;
+            color: #666;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .skill-item {
+            background: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1em;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 5px;
+            background-color: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        #contact a {
+            color: #1e90ff;
+            text-decoration: none;
+            transition: text-decoration 0.3s ease;
+        }
+
+        #contact a:hover {
+            text-decoration: underline;
+        }
+
+        .github-contributions {
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .github-contributions .graph {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            background-color: #ebedf0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .github-contributions .day {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+
+        .github-contributions .day.level-0 { background-color: #ebedf0; }
+        .github-contributions .day.level-1 { background-color: #c6e48b; }
+        .github-contributions .day.level-2 { background-color: #7bc96f; }
+        .github-contributions .day.level-3 { background-color: #239a3b; }
+        .github-contributions .day.level-4 { background-color: #196127; }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+
+            .project-list {
+                grid-template-columns: 1fr;
+            }
+
+            .language-selector {
+                position: static;
+                margin: 20px auto;
+            }
+
+            .github-contributions .day {
+                width: 8px;
+                height: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>👨‍💻 Sami</h1>
+        <p>📱 Mobile App-Entwickler</p>
+        <nav>
+            <ul>
+                <li><a href="#home">🏠 Home</a></li>
+                <li><a href="#about">ℹ️ Über mich</a></li>
+                <li><a href="#skills">🛠️ Fähigkeiten</a></li>
+                <li><a href="#projects">📂 Projekte</a></li>
+                <li><a href="#contact">📧 Kontakt</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select onchange="window.location.href=this.value;">
+                <option value="index.html" selected>🇩🇪 Deutsch</option>
+                <option value="index-ar.html">🇸🇦 العربية</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>🌟 Willkommen zu meinem Portfolio</h2>
+            <div class="profile-image-container">
+                <img src="assets/images/bilder.png" alt="Sami">
+            </div>
+            <p>Hallo! Ich bin <strong>Sami</strong> 👋, ein leidenschaftlicher <strong>Mobile App-Entwickler</strong> 📱 mit Fokus auf <strong>iOS</strong> 🍎 (<strong>Swift</strong>, <strong>SwiftUI</strong>, <strong>Firebase</strong>) und <strong>Android</strong> 🤖 (<strong>Kotlin</strong>, <strong>Android Studio</strong>). Seit <strong>2020</strong> 📅 arbeite ich selbstständig an innovativen <strong>mobilen Anwendungen</strong> 🚀, die benutzerfreundlich und technisch ausgefeilt sind.</p>
+        </section>
+
+        <section id="about">
+            <h2>ℹ️ Über mich</h2>
+            <p>Mein vollständiger Name ist <strong>Sami Omar</strong>, aber ich bin in meinem Portfolio und meinen Projekten einfach als <strong>Sami</strong> bekannt. Ich habe vom <strong>17. Juli 2023 bis 18. Juli 2024</strong> 📅 eine umfassende <strong>Ausbildung zur IT-Fachkraft für App-Entwicklung</strong> 🎓 (<strong>iOS & Android</strong> 📱) am <strong>Syntax Institut</strong> 🏫 erfolgreich abgeschlossen. Die Weiterbildung umfasste <strong>2300 Unterrichtseinheiten</strong> ⏰ und beinhaltete Module wie <strong>Mobile UX/UI Design</strong> 🎨, <strong>Grundlagen der Programmierung</strong> 💻, <strong>Android App Development</strong> 🤖 und <strong>iOS App Development</strong> 🍎. Meine Erfahrung umfasst die Arbeit an Projekten wie der <strong>"Folk Music App"</strong> 🎵 (Android), <strong>"Chigoo Chat App"</strong> 💬 (iOS), <strong>"Cash Loop App"</strong> 🎮 (iOS), der <strong>"Notiz-App"</strong> 📝 (Figma-Design) und der <strong>"Shingal Music Streaming App"</strong> 🎵 (Figma-Design), bei denen ich moderne Technologien wie <strong>SwiftUI</strong>, <strong>Firebase</strong>, <strong>Kotlin</strong> und <strong>Figma</strong> eingesetzt habe.</p>
+            <h3>📊 Mein GitHub-Profil</h3>
+            <div class="github-contributions">
+                <div class="graph">
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-1"></div>
+                </div>
+            </div>
+            <p>Besuche mein GitHub-Profil, um meinen detaillierten Aktivitätsverlauf und meine Projekte zu sehen: <a href="https://github.com/SamiOmar" target="_blank">github.com/SamiOmar</a> 🔗</p>
+        </section>
+
+        <section id="skills">
+            <h2>🛠️ Meine Fähigkeiten</h2>
+            <div class="skills-list">
+                <div class="skill-item">Swift 🍎</div>
+                <div class="skill-item">SwiftUI 🖌️</div>
+                <div class="skill-item">Firebase 🔥</div>
+                <div class="skill-item">Xcode 🛠️</div>
+                <div class="skill-item">Kotlin 🤖</div>
+                <div class="skill-item">Android Studio 📱</div>
+                <div class="skill-item">Figma 🎨</div>
+                <div class="skill-item">MVVM 🏗️</div>
+                <div class="skill-item">Core Data 💾</div>
+                <div class="skill-item">Room 📦</div>
+                <div class="skill-item">Retrofit 🌐</div>
+                <div class="skill-item">Kotlin Coroutines ⏳</div>
+                <div class="skill-item">Git 🗃️</div>
+                <div class="skill-item">RESTful APIs 🌍</div>
+                <div class="skill-item">UI/UX Design 🎨</div>
+                <div class="skill-item">Agile Entwicklung 🤝</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>📂 Meine Projekte</h2>
+            <div class="project-list">
+                <a href="projekt1.html" class="project-item">
+                    <img src="assets/images/1.png" alt="Folk Music App">
+                    <h3>Folk Music App 🎵</h3>
+                    <p>Eine <strong>Android-App</strong> 🤖 zur Wiedergabe <strong>traditioneller Musik</strong> 🎶 mit <strong>Kotlin</strong> und <strong>MediaPlayer</strong>.</p>
+                </a>
+                <a href="projekt2.html" class="project-item">
+                    <img src="assets/images/2.png" alt="Chigoo Chat App">
+                    <h3>Chigoo Chat App 💬</h3>
+                    <p>Eine <strong>iOS-Chat-App</strong> 🍎 für schnelle und zuverlässige <strong>Kommunikation</strong> 📩 mit <strong>Echtzeit-Chat</strong> und <strong>Benutzerprofilerstellung</strong>.</p>
+                </a>
+                <a href="projekt3.html" class="project-item">
+                    <img src="assets/images/cashLoop.png" alt="Cash Loop App">
+                    <h3>Cash Loop App 🎮</h3>
+                    <p>Eine <strong>iOS-App</strong> 🍎 für <strong>Quizspiele</strong> ❓ und <strong>Geldprämien</strong> 💰 mit <strong>Firebase</strong> und <strong>SwiftUI</strong>.</p>
+                </a>
+                <a href="projekt4.html" class="project-item">
+                    <h3>Design Mit Figma 🏞️</h3>
+                    <img src="assets/images/NotizApp_figam.png" alt="Notiz-App">
+                    <h3>Notiz-App 📝</h3>
+                    <p>Eine <strong>iOS-App</strong> 🍎 für das Erstellen und Verwalten von <strong>Notizen</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
+                </a>
+                <a href="projekt5.html" class="project-item">
+                    <h3>Design Mit Figma 🏙️</h3>
+                    <img src="assets/images/shingal_musiga_lofi_figma.png" alt="Shingal Music Streaming App">
+                    <h3>Shingal Music Streaming App 🎵</h3>
+                    <p>Eine <strong>iOS-App</strong> 🍎 für das Streamen von <strong>Musik</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>📧 Kontakt</h2>
+            <p>Email: <a href="mailto:sami.omar.7345@gmail.com">sami.omar.7345@gmail.com</a> ✉️</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/samiomar234" target="_blank">linkedin.com/in/samiomar234</a> 🔗</p>
+            <p>GitHub: <a href="https://github.com/SamiOmar" target="_blank">github.com/SamiOmar</a> 🗃️</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Sami - Alle Rechte vorbehalten 📜</p>
+    </footer>
+</body>
+</html>
