@@ -140,8 +140,10 @@
             overflow-x: auto;
             font-family: 'Fira Code', monospace;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
             margin: 15px 0;
+            white-space: pre;
+            text-align: left;
         }
 
         .code-description {
@@ -369,6 +371,8 @@
         .comment { color: #75715e; }
         .function { color: #66d9ef; }
         .number { color: #ae81ff; }
+        .class { color: #66d9ef; }
+        .variable { color: #fd971f; }
 
         @media (max-width: 600px) {
             header h1 {
@@ -414,11 +418,11 @@
         <nav>
             <ul>
                 <li><a href="#home">🏠 Home</a></li>
-                <li><a href="#about">ℹ️ Über mich</a></li>
                 <li><a href="#code-examples">💻 Code</a></li>
+                <li><a href="#projects">📂 Projekte</a></li>
+                <li><a href="#about">ℹ️ Über mich</a></li>
                 <li><a href="#workflow">⚙️ Arbeitsweise</a></li>
                 <li><a href="#skills">🛠️ Tech Stack</a></li>
-                <li><a href="#projects">📂 Projekte</a></li>
                 <li><a href="#contact">📧 Kontakt</a></li>
             </ul>
         </nav>
@@ -451,9 +455,8 @@
 
                 <div id="swift" class="code-content active">
                     <p class="code-description">📱 <strong>Swift Code aus der Chigoo Chat App:</strong> Implementierung eines Echtzeit-Chat-Systems mit Firebase Firestore</p>
-                    <div class="code-block">
-<span class="comment">// Message Model mit Codable für Firebase</span>
-<span class="keyword">struct</span> <span class="function">Message</span>: Codable, Identifiable {
+                    <div class="code-block"><span class="comment">// Message Model mit Codable für Firebase</span>
+<span class="keyword">struct</span> <span class="class">Message</span>: Codable, Identifiable {
     <span class="keyword">let</span> id: String
     <span class="keyword">let</span> text: String
     <span class="keyword">let</span> senderId: String
@@ -462,11 +465,11 @@
 }
 
 <span class="comment">// Chat Service mit async/await</span>
-<span class="keyword">class</span> <span class="function">ChatService</span>: ObservableObject {
+<span class="keyword">class</span> <span class="class">ChatService</span>: ObservableObject {
     <span class="keyword">@Published</span> <span class="keyword">var</span> messages: [Message] = []
-    <span class="keyword">private</span> <span class="keyword">let</span> db = Firestore.firestore()
+    <span class="keyword">private let</span> db = Firestore.firestore()
     
-    <span class="keyword">func</span> <span class="function">sendMessage</span>(<span class="keyword">_</span> text: String, to userId: String) <span class="keyword">async throws</span> {
+    <span class="keyword">func</span> <span class="function">sendMessage</span>(_ text: String, to userId: String) <span class="keyword">async throws</span> {
         <span class="keyword">let</span> message = Message(
             id: UUID().uuidString,
             text: text,
@@ -483,7 +486,7 @@
     <span class="keyword">func</span> <span class="function">listenToMessages</span>() {
         db.collection(<span class="string">"chats"</span>).addSnapshotListener { snapshot, error <span class="keyword">in</span>
             <span class="keyword">guard let</span> documents = snapshot?.documents <span class="keyword">else</span> { <span class="keyword">return</span> }
-            self.messages = documents.compactMap { doc <span class="keyword">in</span>
+            <span class="keyword">self</span>.messages = documents.compactMap { doc <span class="keyword">in</span>
                 <span class="keyword">try?</span> doc.data(as: Message.<span class="keyword">self</span>)
             }
         }
@@ -493,9 +496,8 @@
 
                 <div id="kotlin" class="code-content">
                     <p class="code-description">🤖 <strong>Kotlin Code aus der Folk Music App:</strong> MVVM-Architektur mit Repository Pattern</p>
-                    <div class="code-block">
-<span class="comment">// ViewModel mit Kotlin Coroutines</span>
-<span class="keyword">class</span> <span class="function">MusicViewModel</span>(
+                    <div class="code-block"><span class="comment">// ViewModel mit Kotlin Coroutines</span>
+<span class="keyword">class</span> <span class="class">MusicViewModel</span>(
     <span class="keyword">private val</span> repository: MusicRepository
 ) : ViewModel() {
     
@@ -511,7 +513,7 @@
                 <span class="keyword">val</span> songs = repository.getAllSongs()
                 _musicList.value = songs
             } <span class="keyword">catch</span> (e: Exception) {
-                Log.e(<span class="string">"MusicViewModel"</span>, <span class="string">"Error loading music: ${e.message}"</span>)
+                Log.e(<span class="string">"MusicViewModel"</span>, <span class="string">"Error: ${e.message}"</span>)
             }
         }
     }
@@ -523,17 +525,17 @@
         }
     }
     
-    <span class="keyword">suspend fun</span> <span class="function">addToFavorites</span>(songId: String) = withContext(Dispatchers.IO) {
-        repository.addToFavorites(songId)
-    }
+    <span class="keyword">suspend fun</span> <span class="function">addToFavorites</span>(songId: String) = 
+        withContext(Dispatchers.IO) {
+            repository.addToFavorites(songId)
+        }
 }</div>
                 </div>
 
                 <div id="swiftui" class="code-content">
                     <p class="code-description">🎨 <strong>SwiftUI Code aus der Cash Loop App:</strong> Moderne UI mit Animationen</p>
-                    <div class="code-block">
-<span class="comment">// Quiz View mit SwiftUI Animationen</span>
-<span class="keyword">struct</span> <span class="function">QuizView</span>: View {
+                    <div class="code-block"><span class="comment">// Quiz View mit SwiftUI Animationen</span>
+<span class="keyword">struct</span> <span class="class">QuizView</span>: View {
     <span class="keyword">@StateObject</span> <span class="keyword">private var</span> viewModel = QuizViewModel()
     <span class="keyword">@State</span> <span class="keyword">private var</span> selectedAnswer: Int? = <span class="keyword">nil</span>
     <span class="keyword">@State</span> <span class="keyword">private var</span> animateCorrect = <span class="keyword">false</span>
@@ -553,11 +555,13 @@
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                 
-                ForEach(viewModel.currentQuestion.answers.indices, id: \.<span class="keyword">self</span>) { index <span class="keyword">in</span>
+                ForEach(viewModel.currentQuestion.answers.indices, 
+                        id: \.<span class="keyword">self</span>) { index <span class="keyword">in</span>
                     AnswerButton(
                         text: viewModel.currentQuestion.answers[index],
                         isSelected: selectedAnswer == index,
-                        isCorrect: animateCorrect && index == viewModel.correctIndex
+                        isCorrect: animateCorrect && 
+                                 index == viewModel.correctIndex
                     ) {
                         withAnimation(.spring()) {
                             selectedAnswer = index
@@ -582,28 +586,13 @@
         }
         .navigationTitle(<span class="string">"Quiz 🎮"</span>)
     }
-    
-    <span class="keyword">private func</span> <span class="function">checkAnswer</span>(<span class="keyword">_</span> index: Int) {
-        <span class="keyword">if</span> viewModel.checkAnswer(index) {
-            withAnimation(.easeInOut(duration: <span class="number">0.5</span>)) {
-                animateCorrect = <span class="keyword">true</span>
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + <span class="number">1.5</span>) {
-                viewModel.nextQuestion()
-                selectedAnswer = <span class="keyword">nil</span>
-                animateCorrect = <span class="keyword">false</span>
-            }
-        }
-    }
 }</div>
                 </div>
 
                 <div id="firebase" class="code-content">
                     <p class="code-description">🔥 <strong>Firebase Integration:</strong> Authentifizierung und Echtzeit-Datenbank</p>
-                    <div class="code-block">
-<span class="comment">// Firebase Auth Service mit Error Handling</span>
-<span class="keyword">class</span> <span class="function">AuthenticationService</span>: ObservableObject {
+                    <div class="code-block"><span class="comment">// Firebase Auth Service mit Error Handling</span>
+<span class="keyword">class</span> <span class="class">AuthenticationService</span>: ObservableObject {
     <span class="keyword">@Published</span> <span class="keyword">var</span> user: User?
     <span class="keyword">@Published</span> <span class="keyword">var</span> isAuthenticated = <span class="keyword">false</span>
     
@@ -612,9 +601,9 @@
     }
     
     <span class="keyword">private func</span> <span class="function">setupAuthListener</span>() {
-        Auth.auth().addStateDidChangeListener { <span class="keyword">_</span>, user <span class="keyword">in</span>
-            self.user = user
-            self.isAuthenticated = user != <span class="keyword">nil</span>
+        Auth.auth().addStateDidChangeListener { _, user <span class="keyword">in</span>
+            <span class="keyword">self</span>.user = user
+            <span class="keyword">self</span>.isAuthenticated = user != <span class="keyword">nil</span>
         }
     }
     
@@ -642,18 +631,9 @@
         <span class="keyword">let</span> config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        <span class="keyword">guard let</span> windowScene = UIApplication.shared.connectedScenes.first <span class="keyword">as?</span> UIWindowScene,
-              <span class="keyword">let</span> rootViewController = windowScene.windows.first?.rootViewController <span class="keyword">else</span> {
-            <span class="keyword">throw</span> AuthError.noRootViewController
-        }
-        
         <span class="keyword">let</span> result = <span class="keyword">try await</span> GIDSignIn.sharedInstance.signIn(
             withPresenting: rootViewController
         )
-        
-        <span class="keyword">guard let</span> idToken = result.user.idToken?.tokenString <span class="keyword">else</span> {
-            <span class="keyword">throw</span> AuthError.missingToken
-        }
         
         <span class="keyword">let</span> credential = GoogleAuthProvider.credential(
             withIDToken: idToken,
@@ -665,6 +645,91 @@
 }</div>
                 </div>
             </div>
+        </section>
+
+        <section id="projects">
+            <h2>📂 Meine Projekte</h2>
+            <div class="project-list">
+                <a href="projekt1.html" class="project-item">
+                    <img src="assets/images/1.png" alt="Folk Music App">
+                    <h3>Folk Music App 🎵</h3>
+                    <p>Eine <strong>Android-App</strong> 🤖 zur Wiedergabe <strong>traditioneller Musik</strong> 🎶 mit <strong>Kotlin</strong> und <strong>MediaPlayer</strong>.</p>
+                </a>
+                <a href="projekt2.html" class="project-item">
+                    <img src="assets/images/2.png" alt="Chigoo Chat App">
+                    <h3>Chigoo Chat App 💬</h3>
+                    <p>Eine <strong>iOS-Chat-App</strong> 🍎 für schnelle und zuverlässige <strong>Kommunikation</strong> 📩 mit <strong>Echtzeit-Chat</strong> und <strong>Benutzerprofilerstellung</strong>.</p>
+                </a>
+                <a href="projekt3.html" class="project-item">
+                    <img src="assets/images/cashLoop.png" alt="Cash Loop App">
+                    <h3>Cash Loop App 🎮</h3>
+                    <p>Eine <strong>iOS-App</strong> 🍎 für <strong>Quizspiele</strong> ❓ und <strong>Geldprämien</strong> 💰 mit <strong>Firebase</strong> und <strong>SwiftUI</strong>.</p>
+                </a>
+                <a href="projekt4.html" class="project-item">
+                    <h3>Design Mit Figma 🏞️</h3>
+                    <img src="assets/images/NotizApp_figam.png" alt="Notiz-App">
+                    <h3>Notiz-App 📝</h3>
+                    <p>Eine <strong>iOS-App</strong> 🍎 für das Erstellen und Verwalten von <strong>Notizen</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
+                </a>
+                <a href="projekt5.html" class="project-item">
+                    <h3>Design Mit Figma 🏙️</h3>
+                    <img src="assets/images/shingal_musiga_lofi_figma.png" alt="Shingal Music Streaming App">
+                    <h3>Shingal Music Streaming App 🎵</h3>
+                    <p>Eine <strong>iOS-App</strong> 🍎 für das Streamen von <strong>Musik</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>ℹ️ Über mich</h2>
+            <p>Mein vollständiger Name ist <strong>Sami Omar</strong>, aber ich bin in meinem Portfolio und meinen Projekten einfach als <strong>Sami</strong> bekannt. Ich habe vom <strong>17. Juli 2023 bis 18. Juli 2024</strong> 📅 eine umfassende <strong>Ausbildung zur IT-Fachkraft für App-Entwicklung</strong> 🎓 (<strong>iOS & Android</strong> 📱) am <strong>Syntax Institut</strong> 🏫 erfolgreich abgeschlossen. Die Weiterbildung umfasste <strong>2300 Unterrichtseinheiten</strong> ⏰ und beinhaltete Module wie <strong>Mobile UX/UI Design</strong> 🎨, <strong>Grundlagen der Programmierung</strong> 💻, <strong>Android App Development</strong> 🤖 und <strong>iOS App Development</strong> 🍎.</p>
+            
+            <h3>📊 Mein GitHub-Profil</h3>
+            <div class="github-contributions">
+                <div class="graph">
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-3"></div>
+                    <div class="day level-1"></div>
+                    <div class="day level-0"></div>
+                    <div class="day level-4"></div>
+                    <div class="day level-2"></div>
+                    <div class="day level-1"></div>
+                </div>
+            </div>
+            <p>Besuche mein GitHub-Profil: <a href="https://github.com/SamiOmar" target="_blank">github.com/SamiOmar</a> 🔗</p>
         </section>
 
         <section id="workflow">
@@ -770,91 +835,6 @@
                         <span class="tech-item">Charles Proxy</span>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="about">
-            <h2>ℹ️ Über mich</h2>
-            <p>Mein vollständiger Name ist <strong>Sami Omar</strong>, aber ich bin in meinem Portfolio und meinen Projekten einfach als <strong>Sami</strong> bekannt. Ich habe vom <strong>17. Juli 2023 bis 18. Juli 2024</strong> 📅 eine umfassende <strong>Ausbildung zur IT-Fachkraft für App-Entwicklung</strong> 🎓 (<strong>iOS & Android</strong> 📱) am <strong>Syntax Institut</strong> 🏫 erfolgreich abgeschlossen. Die Weiterbildung umfasste <strong>2300 Unterrichtseinheiten</strong> ⏰ und beinhaltete Module wie <strong>Mobile UX/UI Design</strong> 🎨, <strong>Grundlagen der Programmierung</strong> 💻, <strong>Android App Development</strong> 🤖 und <strong>iOS App Development</strong> 🍎.</p>
-            
-            <h3>📊 Mein GitHub-Profil</h3>
-            <div class="github-contributions">
-                <div class="graph">
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-1"></div>
-                </div>
-            </div>
-            <p>Besuche mein GitHub-Profil: <a href="https://github.com/SamiOmar" target="_blank">github.com/SamiOmar</a> 🔗</p>
-        </section>
-
-        <section id="projects">
-            <h2>📂 Meine Projekte</h2>
-            <div class="project-list">
-                <a href="projekt1.html" class="project-item">
-                    <img src="assets/images/1.png" alt="Folk Music App">
-                    <h3>Folk Music App 🎵</h3>
-                    <p>Eine <strong>Android-App</strong> 🤖 zur Wiedergabe <strong>traditioneller Musik</strong> 🎶 mit <strong>Kotlin</strong> und <strong>MediaPlayer</strong>.</p>
-                </a>
-                <a href="projekt2.html" class="project-item">
-                    <img src="assets/images/2.png" alt="Chigoo Chat App">
-                    <h3>Chigoo Chat App 💬</h3>
-                    <p>Eine <strong>iOS-Chat-App</strong> 🍎 für schnelle und zuverlässige <strong>Kommunikation</strong> 📩 mit <strong>Echtzeit-Chat</strong> und <strong>Benutzerprofilerstellung</strong>.</p>
-                </a>
-                <a href="projekt3.html" class="project-item">
-                    <img src="assets/images/cashLoop.png" alt="Cash Loop App">
-                    <h3>Cash Loop App 🎮</h3>
-                    <p>Eine <strong>iOS-App</strong> 🍎 für <strong>Quizspiele</strong> ❓ und <strong>Geldprämien</strong> 💰 mit <strong>Firebase</strong> und <strong>SwiftUI</strong>.</p>
-                </a>
-                <a href="projekt4.html" class="project-item">
-                    <h3>Design Mit Figma 🏞️</h3>
-                    <img src="assets/images/NotizApp_figam.png" alt="Notiz-App">
-                    <h3>Notiz-App 📝</h3>
-                    <p>Eine <strong>iOS-App</strong> 🍎 für das Erstellen und Verwalten von <strong>Notizen</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
-                </a>
-                <a href="projekt5.html" class="project-item">
-                    <h3>Design Mit Figma 🏙️</h3>
-                    <img src="assets/images/shingal_musiga_lofi_figma.png" alt="Shingal Music Streaming App">
-                    <h3>Shingal Music Streaming App 🎵</h3>
-                    <p>Eine <strong>iOS-App</strong> 🍎 für das Streamen von <strong>Musik</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
-                </a>
             </div>
         </section>
 
