@@ -3,334 +3,928 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shingal Music Streaming App - Projekt 5</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Shingal Music Streaming App - Professionelles UI/UX Design in Figma für iOS Musik-Streaming. Kompletter Designprozess von Wireframes bis zum finalen Handoff.">
+    <title>Shingal Music Streaming App - Sami Omar | UI/UX Design</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        header {
-            padding: 40px 0;
-            background: linear-gradient(135deg, #1e90ff, #00bfff);
-            color: white;
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin: 0;
-        }
-
-        header p {
-            font-size: 1.2em;
-            margin: 5px 0 0 0;
-        }
-
-        nav {
-            width: 100%;
-            background: transparent;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0 0 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            background: transparent;
-        }
-
-        nav ul li {
-            margin: 0 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            font-size: 1.2em;
-            color: #fff;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #ffd700;
-        }
-
-        main {
-            flex: 1;
-            padding: 40px 20px;
-            margin-bottom: 250px;
-        }
-
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            gap: 15px;
-            margin-bottom: 30px;
-            padding: 10px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .gallery img {
-            width: auto;
-            max-width: 200px;
-            height: 400px;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-            flex-shrink: 0;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        ul {
-            list-style: none;
-            padding: 15px;
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        ul li {
-            margin: 15px 0;
-            font-size: 1.1em;
-            line-height: 1.5;
-            text-align: left;
-        }
-
-        ul li strong {
-            font-weight: bold;
-            margin-right: 10px; /* Minimaler Abstand zwischen Phase und Beschreibung */
-        }
-
-        footer {
-            background: #333 !important;
-            color: white !important;
-            padding: 20px 0 !important;
-            width: 100%;
-            flex-shrink: 0;
-            animation: none !important;
-        }
-
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .language-selector select {
-            padding: 8px;
-            font-size: 1em;
-            border-radius: 5px;
-            background-color: white;
-            border: 1px solid #ccc;
-            cursor: pointer;
-        }
-
-        html, body {
-            height: 100%;
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        *, *:before, *:after {
-            box-sizing: inherit;
+        :root {
+            --primary: #0066FF;
+            --primary-dark: #0052CC;
+            --secondary: #00D4FF;
+            --success: #00C853;
+            --music-primary: #1DB954;
+            --music-dark: #191414;
+            --music-accent: #FF6B6B;
+            --dark: #0A0E27;
+            --light: #F8F9FB;
+            --text: #2C3E50;
+            --text-light: #64748B;
+            --border: #E2E8F0;
+            --shadow: 0 10px 40px rgba(29, 185, 84, 0.15);
+            --shadow-lg: 0 20px 60px rgba(29, 185, 84, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
         }
 
-        main {
-            flex-grow: 1;
-            min-height: auto;
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        #project-details p:last-child {
-            margin-bottom: 100px;
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
         }
 
-        #project-details h2 {
-            font-size: 2.2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: #1e90ff;
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
         }
 
-        #project-details h3 {
-            font-size: 1.6em;
-            margin-top: 50px;
-            margin-bottom: 25px;
-            color: #333;
-            border-bottom: 2px solid #1e90ff;
-            padding-bottom: 10px;
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .back-button {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background: var(--primary-dark);
+            transform: translateX(-5px);
+        }
+
+        /* Hero Section */
+        .project-hero {
+            margin-top: 70px;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--music-dark) 0%, var(--music-primary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translate(0, 0); }
+            to { transform: translate(30px, 30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-badge {
             display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: 500;
         }
 
-        #project-details p {
-            font-size: 1.2em;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            color: #666;
+        .project-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
-        /* Stil für den Email-Link in der Support-Sektion */
-        #project-details a {
-            color: #1e90ff; /* Blaue Farbe für den Link */
-            text-decoration: none; /* Entfernt die Standardunterstreichung */
-            transition: text-decoration 0.3s ease; /* Sanfter Übergang für den Hover-Effekt */
+        .project-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
         }
 
-        #project-details a:hover {
-            text-decoration: underline; /* Unterstreichung beim Hovern */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
         }
 
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8em;
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: -50px auto 0;
+            padding: 0 20px 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-wrapper {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Figma Preview Section */
+        .figma-section {
+            padding: 80px 40px;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--music-primary), var(--music-accent));
+            border-radius: 2px;
+        }
+
+        .figma-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--music-primary), var(--music-dark));
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(29, 185, 84, 0.3);
+        }
+
+        .figma-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(29, 185, 84, 0.4);
+        }
+
+        /* Design Process Section */
+        .process-section {
+            padding: 80px 40px;
+            background: white;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .process-card {
+            padding: 30px;
+            background: var(--light);
+            border-radius: 20px;
+            transition: all 0.3s;
+            position: relative;
+            border-left: 4px solid transparent;
+            border-image: linear-gradient(180deg, var(--music-primary), var(--music-accent));
+            border-image-slice: 1;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .process-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--music-primary), var(--music-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .process-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .process-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.05) 0%, rgba(25, 20, 20, 0.05) 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(29, 185, 84, 0.15);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--music-primary), var(--music-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Planned Features */
+        .planned-section {
+            padding: 80px 40px;
+            background: var(--music-dark);
+            color: white;
+        }
+
+        .planned-section .section-title {
+            color: white;
+        }
+
+        .planned-section .section-title::after {
+            background: linear-gradient(90deg, var(--music-primary), var(--music-accent));
+        }
+
+        .planned-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .planned-card {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(29, 185, 84, 0.3);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .planned-card:hover {
+            transform: translateY(-5px);
+            background: rgba(29, 185, 84, 0.15);
+            border-color: var(--music-primary);
+        }
+
+        .planned-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .planned-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--music-primary);
+        }
+
+        .planned-text {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Tech Section */
+        .tech-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, var(--music-primary) 0%, var(--music-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .tech-section .section-title {
+            color: white;
+        }
+
+        .tech-section .section-title::after {
+            background: white;
+        }
+
+        .tech-logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--music-primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 40px;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--music-primary), var(--music-dark));
+            color: white;
+            box-shadow: 0 5px 20px rgba(29, 185, 84, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(29, 185, 84, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--music-primary);
+            border: 2px solid var(--music-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--music-primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 4px solid var(--music-primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.5rem;
             }
 
-            nav ul li {
-                margin: 5px 10px;
+            .project-subtitle {
+                font-size: 1.1rem;
             }
 
-            .gallery img {
-                max-width: 150px;
-                height: 300px;
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             }
 
-            .language-selector {
-                position: static;
-                margin: 20px auto;
+            .nav-menu.active {
+                display: flex;
             }
 
-            main {
-                margin-bottom: 200px;
+            .mobile-menu-btn {
+                display: block;
             }
 
-            #project-details p:last-child {
-                margin-bottom: 80px;
+            .process-grid,
+            .features-grid,
+            .planned-grid {
+                grid-template-columns: 1fr;
             }
 
-            #project-details h2 {
-                font-size: 1.8em;
+            .hero-stats {
+                gap: 20px;
             }
 
-            #project-details h3 {
-                font-size: 1.4em;
+            .stat-number {
+                font-size: 2rem;
             }
 
-            #project-details p {
-                font-size: 1em;
+            .content-wrapper {
+                border-radius: 20px;
             }
 
-            ul li {
-                font-size: 1em;
+            .figma-section,
+            .process-section,
+            .features-section,
+            .planned-section,
+            .tech-section {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s 1s forwards;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top-color: var(--music-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>👨‍💻 Sami</h1>
-        <p>📱 Mobile App-Entwickler</p>
-        <nav>
-            <ul>
-                <li><a href="https://sami-ezda.com/index.php">🏠 Home</a></li>
-                <li><a href="https://sami-ezda.com/index.php">ℹ️ Über mich</a></li>
-                <li><a href="https://sami-ezda.com/index.php#skills">🛠️ Fähigkeiten</a></li>
-                <li><a href="https://sami-ezda.com/index.php#projects">📂 Projekte</a></li>
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span>←</span>
+                <span>Sami Omar</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">Über mich</a></li>
+                <li><a href="index.html#skills">Kompetenzen</a></li>
+                <li><a href="index.html#projects">Projekte</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+                <li><a href="index.html" class="back-button">
+                    <span>←</span>
+                    <span>Zurück zum Portfolio</span>
+                </a></li>
             </ul>
-        </nav>
-        <div class="language-selector">
-            <select onchange="window.location.href=this.value;">
-                <option value="projekt5.php" selected>🇩🇪 Deutsch</option>
-                <option value="projekt5-ar.php">🇸🇦 العربية</option>
-            </select>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <section id="project-details">
-            <h2>🎵 Shingal Music Streaming App</h2>
-            <p>Ein <strong>Figma-Design</strong> für eine <strong>iOS-Musik-Streaming-App</strong>, die den gesamten <strong>Designprozess</strong> für mobile Apps demonstriert – von der ersten Idee bis zur finalen Übergabe. Die Shingal Music Streaming App ermöglicht das Entdecken, Streamen und Genießen von <strong>Musik</strong> mit einer benutzerfreundlichen <strong>Benutzeroberfläche</strong>.</p>
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <span class="project-badge">iOS Music Streaming</span>
+            <h1 class="project-title">Shingal Music Streaming App</h1>
+            <p class="project-subtitle">
+                Kompletter UI/UX Designprozess einer iOS Musik-Streaming-App in Figma - 
+                von Low-Fi Wireframes bis zum finalen Developer Handoff.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">Design Phasen</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">iOS</div>
+                    <div class="stat-label">Platform</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Figma</div>
+                    <div class="stat-label">Design Tool</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <h3>📸 Figma-Design</h3>
-            <p>Schau dir das Design meiner Shingal Music Streaming App in Figma an: <a href="https://www.figma.com/design/iNBeQwGnNCVJFWOShYyfaq/IOS-Shingal-Music-Streaming-App?node-id=0-1&p=f&t=AHpofawzqPttjVhe-0" target="_blank">Shingal Music Streaming App Figma-Design</a> 🔗</p>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Figma Section -->
+            <section class="figma-section">
+                <h2 class="section-title">Figma Design</h2>
+                <p style="color: var(--text-light); margin-bottom: 40px; font-size: 1.1rem;">
+                    Entdecke das komplette Design der Musik-Streaming-App
+                </p>
+                <a href="https://www.figma.com/design/iNBeQwGnNCVJFWOShYyfaq/IOS-Shingal-Music-Streaming-App?node-id=0-1&p=f&t=AHpofawzqPttjVhe-0" 
+                   target="_blank" 
+                   class="figma-link">
+                    <span>Figma Design öffnen</span>
+                    <span>→</span>
+                </a>
+            </section>
 
-            <h3>✨ Designprozess</h3>
-            <p>Das Design der Shingal Music Streaming App umfasst alle Phasen des UI/UX-Designprozesses für mobile Apps:</p>
-            <ul>
-                <li><strong>Low-Fi Wireframes:</strong> Erste Skizzen und grundlegende Layouts, um die Struktur der App zu definieren 📋.</li>
-                <li><strong>High-Fi Vorstellung:</strong> Detaillierte Visualisierung der App mit hoher Genauigkeit 🎨.</li>
-                <li><strong>Android Mid-Fi Wireframes:</strong> Mittlere Detailtiefe für Android-Designs 🤖.</li>
-                <li><strong>iOS Mid-Fi Wireframes:</strong> Mittlere Detailtiefe für iOS-Designs 🍎.</li>
-                <li><strong>Grid/Auto Layout:</strong> Definition eines konsistenten Rasters und Layouts für responsive Designs 📐.</li>
-                <li><strong>Komponenten:</strong> Erstellung wiederverwendbarer UI-Komponenten für eine einheitliche Gestaltung 🧩.</li>
-                <li><strong>Mid-Fi Prototype:</strong> Interaktiver Prototyp mit mittlerer Detailtiefe für erste Tests 🖥️.</li>
-                <li><strong>Präsentation Mid-Fi iOS:</strong> Präsentation des iOS-Designs in mittlerer Detailtiefe 📊.</li>
-                <li><strong>Guide Style:</strong> Erstellung eines Style Guides für Farben, Typografie und UI-Elemente 📘.</li>
-                <li><strong>Moodboard:</strong> Inspirationssammlung für das visuelle Design der App 🎨.</li>
-                <li><strong>Android High-Fi:</strong> Hochauflösende Designs für Android 🤖.</li>
-                <li><strong>iOS High-Fi:</strong> Hochauflösende Designs für iOS 🍎.</li>
-                <li><strong>Hand off:</strong> Übergabe der finalen Designs an Entwickler für die Umsetzung 📤.</li>
-                <li><strong>Lernen/ausprobieren:</strong> Experimentieren und Lernen während des Designprozesses 🧠.</li>
-            </ul>
+            <!-- Design Process Section -->
+            <section class="process-section">
+                <h2 class="section-title">Designprozess</h2>
+                <div class="process-grid">
+                    <div class="process-card">
+                        <span class="process-number">1</span>
+                        <h3 class="process-title">Low-Fi Wireframes</h3>
+                        <p class="process-description">Erste Skizzen und grundlegende Layouts, um die Struktur der App zu definieren</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">2</span>
+                        <h3 class="process-title">High-Fi Vorstellung</h3>
+                        <p class="process-description">Detaillierte Visualisierung der App mit hoher Genauigkeit</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">3</span>
+                        <h3 class="process-title">Android Mid-Fi</h3>
+                        <p class="process-description">Mittlere Detailtiefe für Android-Designs</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">4</span>
+                        <h3 class="process-title">iOS Mid-Fi</h3>
+                        <p class="process-description">Mittlere Detailtiefe für iOS-Designs</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">5</span>
+                        <h3 class="process-title">Grid/Auto Layout</h3>
+                        <p class="process-description">Definition eines konsistenten Rasters und Layouts für responsive Designs</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">6</span>
+                        <h3 class="process-title">Komponenten</h3>
+                        <p class="process-description">Erstellung wiederverwendbarer UI-Komponenten für eine einheitliche Gestaltung</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">7</span>
+                        <h3 class="process-title">Mid-Fi Prototype</h3>
+                        <p class="process-description">Interaktiver Prototyp mit mittlerer Detailtiefe für erste Tests</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">8</span>
+                        <h3 class="process-title">iOS Präsentation</h3>
+                        <p class="process-description">Präsentation des iOS-Designs in mittlerer Detailtiefe</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">9</span>
+                        <h3 class="process-title">Guide Style</h3>
+                        <p class="process-description">Erstellung eines Style Guides für Farben, Typografie und UI-Elemente</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">10</span>
+                        <h3 class="process-title">Moodboard</h3>
+                        <p class="process-description">Inspirationssammlung für das visuelle Design der App</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">11</span>
+                        <h3 class="process-title">Android High-Fi</h3>
+                        <p class="process-description">Hochauflösende Designs für Android</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">12</span>
+                        <h3 class="process-title">iOS High-Fi</h3>
+                        <p class="process-description">Hochauflösende Designs für iOS</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">13</span>
+                        <h3 class="process-title">Hand off</h3>
+                        <p class="process-description">Übergabe der finalen Designs an Entwickler für die Umsetzung</p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-number">14</span>
+                        <h3 class="process-title">Lernen/Ausprobieren</h3>
+                        <p class="process-description">Experimentieren und Lernen während des Designprozesses</p>
+                    </div>
+                </div>
+            </section>
 
-            <h3>✨ Features der Shingal Music Streaming App</h3>
-            <ul>
-                <li><strong>Musik streamen:</strong> Streame deine <strong>Lieblingssongs</strong> jederzeit und überall 🎶.</li>
-                <li><strong>Playlists erstellen:</strong> Erstelle und verwalte <strong>Playlists</strong> für verschiedene Stimmungen 📜.</li>
-                <li><strong>Suchfunktion:</strong> Finde Songs, Künstler und Alben mit einer integrierten <strong>Suchfunktion</strong> 🔍.</li>
-                <li><strong>Benutzerfreundliches Design:</strong> Intuitives <strong>UI/UX-Design</strong> für eine einfache Bedienung 🎨.</li>
-            </ul>
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2 class="section-title">App Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎶</div>
+                        <h3 class="feature-title">Musik streamen</h3>
+                        <p class="feature-description">
+                            Streame deine Lieblingssongs jederzeit und überall
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📜</div>
+                        <h3 class="feature-title">Playlists erstellen</h3>
+                        <p class="feature-description">
+                            Erstelle und verwalte Playlists für verschiedene Stimmungen
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3 class="feature-title">Suchfunktion</h3>
+                        <p class="feature-description">
+                            Finde Songs, Künstler und Alben mit einer integrierten Suchfunktion
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3 class="feature-title">Benutzerfreundliches Design</h3>
+                        <p class="feature-description">
+                            Intuitives UI/UX-Design für eine einfache Bedienung
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-            <h3>🚀 Geplante Features</h3>
-            <ul>
-                <li><strong>Offline-Modus:</strong> Höre Musik auch ohne Internetverbindung 📴.</li>
-                <li><strong>Personalisierte Empfehlungen:</strong> Erhalte Vorschläge basierend auf deinem <strong>Hörverlauf</strong> 🎧.</li>
-                <li><strong>Soziale Funktionen:</strong> Teile Playlists und Songs mit Freunden 📤.</li>
-            </ul>
+            <!-- Planned Features Section -->
+            <section class="planned-section">
+                <h2 class="section-title">Geplante Features</h2>
+                <div class="planned-grid">
+                    <div class="planned-card">
+                        <div class="planned-icon">📴</div>
+                        <h3 class="planned-title">Offline-Modus</h3>
+                        <p class="planned-text">Höre Musik auch ohne Internetverbindung</p>
+                    </div>
+                    <div class="planned-card">
+                        <div class="planned-icon">🎧</div>
+                        <h3 class="planned-title">Personalisierte Empfehlungen</h3>
+                        <p class="planned-text">Erhalte Vorschläge basierend auf deinem Hörverlauf</p>
+                    </div>
+                    <div class="planned-card">
+                        <div class="planned-icon">📤</div>
+                        <h3 class="planned-title">Soziale Funktionen</h3>
+                        <p class="planned-text">Teile Playlists und Songs mit Freunden</p>
+                    </div>
+                </div>
+            </section>
 
-            <h3>🛠️ Technologien</h3>
-            <p><strong>Figma</strong> 🎨 für das Design der Benutzeroberfläche.</p>
+            <!-- Tech Section -->
+            <section class="tech-section">
+                <h2 class="section-title">Design Tool</h2>
+                <div class="tech-logo">Figma</div>
+                <p style="font-size: 1.2rem; opacity: 0.95;">
+                    Professionelles UI/UX Design mit Figma
+                </p>
+            </section>
 
-            <h3>📧 Support</h3>
-            <p>Bei Fragen: <a href="mailto:sami.omar.7345@gmail.com">sami.omar.7345@gmail.com</a></p>
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2>Interesse an einer Musik-Streaming-App?</h2>
+                <p>
+                    Ich gestalte moderne und intuitive Musik-Apps für iOS und Android. 
+                    Von der Konzeption bis zum finalen Design.
+                </p>
+                <div class="cta-buttons">
+                    <a href="mailto:sami.omar.7345@gmail.com" class="btn btn-primary">
+                        <span>✉️</span>
+                        <span>Projekt anfragen</span>
+                    </a>
+                    <a href="https://www.figma.com/design/iNBeQwGnNCVJFWOShYyfaq/IOS-Shingal-Music-Streaming-App?node-id=0-1&p=f&t=AHpofawzqPttjVhe-0" 
+                       target="_blank" 
+                       class="btn btn-secondary">
+                        <span>🎨</span>
+                        <span>Figma Design ansehen</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
 
-            <h3>👨‍💻 Mitwirkende</h3>
-            <p>Entwickelt von <strong>Sami</strong> allein als selbstständiges Projekt.</p>
-        </section>
-    </main>
-
+    <!-- Footer -->
     <footer>
-        <p>© 2025 Sami</p>
+        <p>&copy; 2025 Sami Omar. Selbstständig entwickeltes Design-Projekt.</p>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Remove loader after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loader').style.display = 'none';
+            }, 1000);
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.process-card, .feature-card, .planned-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
 </body>
 </html>
