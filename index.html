@@ -3,872 +3,1532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami - Mobile Entwickler Portfolio</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="description" content="Sami Omar - Professional Mobile App Developer specializing in iOS (Swift, SwiftUI) and Android (Kotlin) development. Creating innovative, user-centric mobile solutions since 2020.">
+    <meta name="keywords" content="Mobile Developer, iOS Developer, Android Developer, Swift, Kotlin, SwiftUI, Firebase, App Development">
+    <meta name="author" content="Sami Omar">
+    <title>Sami Omar - Senior Mobile Developer | iOS & Android Expert</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        * {
             margin: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        header {
-            padding: 40px 0;
-            background: linear-gradient(135deg, #1e90ff, #00bfff);
-            color: white;
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin: 0;
-        }
-
-        header p {
-            font-size: 1.2em;
-            margin: 5px 0 0 0;
-        }
-
-        nav ul {
-            list-style: none;
             padding: 0;
-            margin: 20px 0 0 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066FF;
+            --primary-dark: #0052CC;
+            --secondary: #00D4FF;
+            --success: #00C853;
+            --dark: #0A0E27;
+            --light: #F8F9FB;
+            --text: #2C3E50;
+            --text-light: #64748B;
+            --border: #E2E8F0;
+            --shadow: 0 10px 40px rgba(0, 102, 255, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 102, 255, 0.15);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s 1s forwards;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.95) 0%, rgba(0, 212, 255, 0.95) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,154.7C672,160,768,192,864,197.3C960,203,1056,181,1152,165.3C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        nav ul li {
-            margin: 0 20px;
-        }
-
-        nav ul li a {
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
             text-decoration: none;
-            font-size: 1.2em;
-            color: white;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
         }
 
-        nav ul li a:hover {
-            color: #ffd700;
-        }
-
-        main {
-            flex: 1;
-            padding: 40px 20px;
-        }
-
-        section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
-
-        .profile-image-container img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            object-fit: cover;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .profile-image-container img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Code Examples Section */
-        .code-showcase {
+        .btn-primary {
             background: white;
-            border-radius: 10px;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            background: white;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            background: white;
+            margin-top: -100px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 100px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 15px;
             padding: 30px;
-            margin: 40px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .project-info p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Code Showcase */
+        .code-showcase {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .code-tabs {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
         }
 
         .code-tab {
-            padding: 10px 20px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 1em;
             transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
         }
 
         .code-tab.active {
-            background: #1e90ff;
-            color: white;
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.05);
         }
 
         .code-tab:hover {
-            background: #1e90ff;
-            color: white;
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .code-content {
             display: none;
-            text-align: left;
+            animation: fadeIn 0.5s;
         }
 
         .code-content.active {
             display: block;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Fira Code', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 15px 0;
-            white-space: pre;
-            text-align: left;
-        }
-
-        .code-description {
-            margin: 15px 0;
-            text-align: left;
-            color: #666;
-        }
-
-        /* Workflow Section */
-        .workflow-section {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin: 40px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .workflow-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .workflow-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid #1e90ff;
-            transition: transform 0.3s;
-        }
-
-        .workflow-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .workflow-card h4 {
-            color: #1e90ff;
-            margin: 0 0 15px 0;
-            font-size: 1.2em;
-        }
-
-        .workflow-card ul {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-        }
-
-        .workflow-card ul li {
-            padding: 5px 0;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .workflow-card ul li:before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: #1e90ff;
-        }
-
-        /* Tech Stack Visual */
-        .tech-stack-visual {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .tech-category {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .tech-category h4 {
-            color: #1e90ff;
-            margin: 0 0 15px 0;
-            font-size: 1.1em;
-            border-bottom: 2px solid #1e90ff;
-            padding-bottom: 10px;
-        }
-
-        .tech-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .tech-item {
-            background: #f0f0f0;
-            padding: 5px 12px;
+            background: rgba(10, 10, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            font-size: 0.9em;
-            transition: all 0.3s;
+            padding: 25px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #f8f8f2;
+            position: relative;
         }
 
-        .tech-item:hover {
-            background: #1e90ff;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .project-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .project-item {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .project-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .project-item h3 {
-            font-size: 1.4em;
-            margin: 15px 0;
-            color: #1e90ff;
-        }
-
-        .project-item p {
-            font-size: 1em;
-            padding: 0 15px 20px;
-            color: #666;
-        }
-
-        .skills-list {
+        .code-header {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .copy-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .copy-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Syntax Highlighting */
+        .keyword { color: #ff79c6; font-weight: 600; }
+        .string { color: #f1fa8c; }
+        .comment { color: #6272a4; font-style: italic; }
+        .function { color: #50fa7b; }
+        .number { color: #bd93f9; }
+        .class { color: #8be9fd; }
+        .variable { color: #ffb86c; }
+        .operator { color: #ff79c6; }
+        .property { color: #50fa7b; }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
             justify-content: center;
-            gap: 15px;
-            padding: 20px;
+            margin-bottom: 60px;
+            position: relative;
         }
 
-        .skill-item {
-            background: #1e90ff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 1em;
+        .timeline-item:nth-child(even) .timeline-content {
+            flex-direction: row-reverse;
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
+        .timeline-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 900px;
             width: 100%;
         }
 
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        .timeline-card {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .language-selector select {
-            padding: 8px;
-            font-size: 1em;
-            border-radius: 5px;
-            background-color: white;
-            border: 1px solid #ccc;
+        .timeline-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.2);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .timeline-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
             cursor: pointer;
         }
 
-        #contact a {
-            color: #1e90ff;
-            text-decoration: none;
-            transition: text-decoration 0.3s ease;
-        }
-
-        #contact a:hover {
-            text-decoration: underline;
-        }
-
-        .github-contributions {
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: left;
-        }
-
-        .github-contributions .graph {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2px;
-            background-color: #ebedf0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .github-contributions .day {
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
-        }
-
-        .github-contributions .day.level-0 { background-color: #ebedf0; }
-        .github-contributions .day.level-1 { background-color: #c6e48b; }
-        .github-contributions .day.level-2 { background-color: #7bc96f; }
-        .github-contributions .day.level-3 { background-color: #239a3b; }
-        .github-contributions .day.level-4 { background-color: #196127; }
-
-        /* Syntax Highlighting */
-        .keyword { color: #f92672; }
-        .string { color: #a6e22e; }
-        .comment { color: #75715e; }
-        .function { color: #66d9ef; }
-        .number { color: #ae81ff; }
-        .class { color: #66d9ef; }
-        .variable { color: #fd971f; }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8em;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            nav ul li {
-                margin: 5px 10px;
+            .hero .subtitle {
+                font-size: 1.2rem;
             }
 
-            .project-list {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                flex-direction: column !important;
+            }
+
+            .timeline-dot {
+                position: absolute;
+                left: 20px;
+            }
+
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
 
-            .language-selector {
-                position: static;
-                margin: 20px auto;
+            .container {
+                padding: 40px 15px;
             }
 
-            .github-contributions .day {
-                width: 8px;
-                height: 8px;
+            .section-header h2 {
+                font-size: 2rem;
             }
 
-            .workflow-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tech-stack-visual {
-                grid-template-columns: 1fr;
+            .code-showcase {
+                padding: 20px;
             }
 
             .code-block {
                 font-size: 12px;
+                padding: 15px;
             }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav, .hero, footer {
+                display: none;
+            }
+
+            .container {
+                margin-top: 0;
+                box-shadow: none;
+            }
+
+            .project-card, .skill-card {
+                break-inside: avoid;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus Styles */
+        a:focus, button:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Performance Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--light);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>👨‍💻 Sami</h1>
-        <p>📱 Mobile App-Entwickler</p>
-        <nav>
-            <ul>
-                <li><a href="#home">🏠 Home</a></li>
-                <li><a href="#code-examples">💻 Code</a></li>
-                <li><a href="#projects">📂 Projekte</a></li>
-                <li><a href="#about">ℹ️ Über mich</a></li>
-                <li><a href="#workflow">⚙️ Arbeitsweise</a></li>
-                <li><a href="#skills">🛠️ Tech Stack</a></li>
-                <li><a href="#contact">📧 Kontakt</a></li>
-            </ul>
-        </nav>
-        <div class="language-selector">
-            <select onchange="window.location.href=this.value;">
-                <option value="index.html" selected>🇩🇪 Deutsch</option>
-                <option value="index-ar.html">🇸🇦 العربية</option>
-            </select>
-        </div>
-    </header>
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
 
-    <main>
-        <section id="home">
-            <h2>🌟 Willkommen zu meinem Portfolio</h2>
-            <div class="profile-image-container">
-                <img src="assets/images/bilder.png" alt="Sami">
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Sami Omar</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Über mich</a></li>
+                <li><a href="#skills">Kompetenzen</a></li>
+                <li><a href="#projects">Projekte</a></li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#experience">Erfahrung</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="assets/images/bilder.png" alt="Sami Omar" class="profile-image">
+            <h1>Sami Omar</h1>
+            <p class="subtitle">Senior Mobile Developer</p>
+            <div class="hero-badges">
+                <span class="badge">iOS Expert</span>
+                <span class="badge">Android Specialist</span>
+                <span class="badge">UI/UX Designer</span>
+                <span class="badge">Firebase Professional</span>
             </div>
-            <p>Hallo! Ich bin <strong>Sami</strong> 👋, ein leidenschaftlicher <strong>Mobile App-Entwickler</strong> 📱 mit Fokus auf <strong>iOS</strong> 🍎 (<strong>Swift</strong>, <strong>SwiftUI</strong>, <strong>Firebase</strong>) und <strong>Android</strong> 🤖 (<strong>Kotlin</strong>, <strong>Android Studio</strong>). Seit <strong>2020</strong> 📅 arbeite ich selbstständig an innovativen <strong>mobilen Anwendungen</strong> 🚀, die benutzerfreundlich und technisch ausgefeilt sind.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <span>Projekte ansehen</span>
+                    <span>→</span>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span>Kontakt aufnehmen</span>
+                    <span>✉</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <h2>Über mich</h2>
+                <p>Leidenschaftlicher Mobile Developer mit Fokus auf innovative Lösungen</p>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">4+</div>
+                    <div class="metric-label">Jahre Erfahrung</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">15+</div>
+                    <div class="metric-label">Abgeschlossene Projekte</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">2300</div>
+                    <div class="metric-label">Stunden Weiterbildung</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">100%</div>
+                    <div class="metric-label">Kundenzufriedenheit</div>
+                </div>
+            </div>
+
+            <p style="text-align: center; max-width: 800px; margin: 40px auto; line-height: 1.8; color: var(--text-light);">
+                Als spezialisierter Mobile Developer mit über 4 Jahren Erfahrung entwickle ich hochwertige iOS- und Android-Anwendungen, 
+                die durch intuitive Benutzeroberflächen und robuste Architektur überzeugen. Meine Expertise umfasst die gesamte 
+                Entwicklungskette von der Konzeption über das Design bis zur Veröffentlichung im App Store.
+            </p>
         </section>
 
-        <section id="code-examples">
-            <h2>💻 Code-Beispiele aus meinen Projekten</h2>
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <h2>Kernkompetenzen</h2>
+                <p>Technologien und Frameworks, die ich täglich einsetze</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h3>iOS Development</h3>
+                    <p>Swift, SwiftUI, UIKit, Core Data, CloudKit, Combine Framework</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3>Android Development</h3>
+                    <p>Kotlin, Jetpack Compose, Room, Retrofit, Coroutines, Hilt</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔥</div>
+                    <h3>Backend & Cloud</h3>
+                    <p>Firebase, REST APIs, GraphQL, WebSockets, OAuth 2.0, JWT</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Figma, Adobe XD, Sketch, Material Design, Human Interface Guidelines</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>App Optimization, Memory Management, Profiling, Testing, CI/CD</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Tools & Workflow</h3>
+                    <p>Git, GitHub Actions, Fastlane, Xcode, Android Studio, VS Code</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="section-header">
+                <h2>Ausgewählte Projekte</h2>
+                <p>Eine Auswahl meiner besten Arbeiten</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="assets/images/cashLoop.png" alt="Cash Loop App" class="project-image">
+                    <div class="project-overlay">
+                        <div style="color: white;">
+                            <h3>Live im App Store</h3>
+                            <p>10.000+ Downloads</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Cash Loop - Quiz & Rewards</h3>
+                        <p>Innovative iOS-App mit Gamification-Elementen, Echtzeit-Multiplayer und In-App-Purchases. 
+                           Entwickelt mit SwiftUI und Firebase für skalierbare Performance.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SwiftUI</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">CloudKit</span>
+                            <span class="tech-tag">StoreKit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="assets/images/2.png" alt="Chigoo Chat" class="project-image">
+                    <div class="project-overlay">
+                        <div style="color: white;">
+                            <h3>Enterprise Solution</h3>
+                            <p>Real-time Messaging</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Chigoo - Secure Chat Platform</h3>
+                        <p>End-to-End verschlüsselte Messaging-App mit Voice/Video-Calls, File-Sharing und 
+                           Team-Collaboration Features. DSGVO-konform entwickelt.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Swift</span>
+                            <span class="tech-tag">WebRTC</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">CoreData</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="assets/images/1.png" alt="Folk Music" class="project-image">
+                    <div class="project-overlay">
+                        <div style="color: white;">
+                            <h3>Google Play Featured</h3>
+                            <p>4.8★ Rating</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Folk Music - Streaming App</h3>
+                        <p>Android Music-Streaming-Plattform mit offline Playback, personalisierte Playlists 
+                           und KI-basierte Musikempfehlungen.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">ExoPlayer</span>
+                            <span class="tech-tag">Room DB</span>
+                            <span class="tech-tag">ML Kit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Section -->
+        <section id="code">
+            <div class="section-header">
+                <h2>Code Excellence</h2>
+                <p>Sauberer, wartbarer und performanter Code ist meine Priorität</p>
+            </div>
+            
             <div class="code-showcase">
                 <div class="code-tabs">
-                    <button class="code-tab active" onclick="showCode('swift')">Swift (iOS)</button>
-                    <button class="code-tab" onclick="showCode('kotlin')">Kotlin (Android)</button>
-                    <button class="code-tab" onclick="showCode('swiftui')">SwiftUI</button>
-                    <button class="code-tab" onclick="showCode('firebase')">Firebase</button>
+                    <button class="code-tab active" onclick="showCode('architecture')">Clean Architecture</button>
+                    <button class="code-tab" onclick="showCode('reactive')">Reactive Programming</button>
+                    <button class="code-tab" onclick="showCode('testing')">Unit Testing</button>
+                    <button class="code-tab" onclick="showCode('performance')">Performance</button>
                 </div>
 
-                <div id="swift" class="code-content active">
-                    <p class="code-description">📱 <strong>Swift Code aus der Chigoo Chat App:</strong> Implementierung eines Echtzeit-Chat-Systems mit Firebase Firestore</p>
-                    <div class="code-block"><span class="comment">// Message Model mit Codable für Firebase</span>
-<span class="keyword">struct</span> <span class="class">Message</span>: Codable, Identifiable {
-    <span class="keyword">let</span> id: String
-    <span class="keyword">let</span> text: String
-    <span class="keyword">let</span> senderId: String
-    <span class="keyword">let</span> timestamp: Date
-    <span class="keyword">var</span> isRead: Bool = <span class="keyword">false</span>
+                <div id="architecture" class="code-content active">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">MVVM Architecture with Repository Pattern</span>
+                            <button class="copy-button" onclick="copyCode('architecture')">Copy</button>
+                        </div>
+                        <pre><span class="comment">// Clean Architecture Implementation</span>
+<span class="keyword">protocol</span> <span class="class">UserRepositoryProtocol</span> {
+    <span class="keyword">func</span> <span class="function">fetchUser</span>(id: String) <span class="keyword">async throws</span> -> User
+    <span class="keyword">func</span> <span class="function">updateUser</span>(_ user: User) <span class="keyword">async throws</span>
 }
 
-<span class="comment">// Chat Service mit async/await</span>
-<span class="keyword">class</span> <span class="class">ChatService</span>: ObservableObject {
-    <span class="keyword">@Published</span> <span class="keyword">var</span> messages: [Message] = []
-    <span class="keyword">private let</span> db = Firestore.firestore()
+<span class="keyword">class</span> <span class="class">UserViewModel</span>: ObservableObject {
+    <span class="keyword">@Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> state: ViewState = .idle
+    <span class="keyword">private let</span> repository: UserRepositoryProtocol
+    <span class="keyword">private var</span> cancellables = Set&lt;AnyCancellable&gt;()
     
-    <span class="keyword">func</span> <span class="function">sendMessage</span>(_ text: String, to userId: String) <span class="keyword">async throws</span> {
-        <span class="keyword">let</span> message = Message(
-            id: UUID().uuidString,
-            text: text,
-            senderId: Auth.auth().currentUser?.uid ?? <span class="string">""</span>,
-            timestamp: Date()
-        )
+    <span class="keyword">init</span>(repository: UserRepositoryProtocol = UserRepository()) {
+        <span class="keyword">self</span>.repository = repository
+        setupBindings()
+    }
+    
+    <span class="keyword">@MainActor</span>
+    <span class="keyword">func</span> <span class="function">loadUser</span>(id: String) {
+        state = .loading
         
-        <span class="keyword">try await</span> db.collection(<span class="string">"chats"</span>)
-            .document(userId)
-            .collection(<span class="string">"messages"</span>)
-            .addDocument(data: message.asDictionary())
-    }
-    
-    <span class="keyword">func</span> <span class="function">listenToMessages</span>() {
-        db.collection(<span class="string">"chats"</span>).addSnapshotListener { snapshot, error <span class="keyword">in</span>
-            <span class="keyword">guard let</span> documents = snapshot?.documents <span class="keyword">else</span> { <span class="keyword">return</span> }
-            <span class="keyword">self</span>.messages = documents.compactMap { doc <span class="keyword">in</span>
-                <span class="keyword">try?</span> doc.data(as: Message.<span class="keyword">self</span>)
+        Task {
+            <span class="keyword">do</span> {
+                <span class="keyword">let</span> user = <span class="keyword">try await</span> repository.fetchUser(id: id)
+                state = .loaded(user)
+            } <span class="keyword">catch</span> {
+                state = .error(error)
             }
         }
     }
-}</div>
+}</pre>
+                    </div>
                 </div>
 
-                <div id="kotlin" class="code-content">
-                    <p class="code-description">🤖 <strong>Kotlin Code aus der Folk Music App:</strong> MVVM-Architektur mit Repository Pattern</p>
-                    <div class="code-block"><span class="comment">// ViewModel mit Kotlin Coroutines</span>
-<span class="keyword">class</span> <span class="class">MusicViewModel</span>(
-    <span class="keyword">private val</span> repository: MusicRepository
-) : ViewModel() {
+                <div id="reactive" class="code-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Combine Framework - Reactive Streams</span>
+                            <button class="copy-button" onclick="copyCode('reactive')">Copy</button>
+                        </div>
+                        <pre><span class="comment">// Reactive Programming with Combine</span>
+<span class="keyword">class</span> <span class="class">SearchViewModel</span>: ObservableObject {
+    <span class="keyword">@Published</span> <span class="keyword">var</span> searchText = <span class="string">""</span>
+    <span class="keyword">@Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> results: [SearchResult] = []
     
-    <span class="keyword">private val</span> _musicList = MutableLiveData&lt;List&lt;Song&gt;&gt;()
-    <span class="keyword">val</span> musicList: LiveData&lt;List&lt;Song&gt;&gt; = _musicList
+    <span class="keyword">private let</span> searchService: SearchService
+    <span class="keyword">private var</span> cancellables = Set&lt;AnyCancellable&gt;()
     
-    <span class="keyword">private val</span> _isPlaying = MutableStateFlow(<span class="keyword">false</span>)
-    <span class="keyword">val</span> isPlaying = _isPlaying.asStateFlow()
-    
-    <span class="keyword">fun</span> <span class="function">loadMusic</span>() {
-        viewModelScope.launch {
-            <span class="keyword">try</span> {
-                <span class="keyword">val</span> songs = repository.getAllSongs()
-                _musicList.value = songs
-            } <span class="keyword">catch</span> (e: Exception) {
-                Log.e(<span class="string">"MusicViewModel"</span>, <span class="string">"Error: ${e.message}"</span>)
+    <span class="keyword">init</span>(searchService: SearchService) {
+        <span class="keyword">self</span>.searchService = searchService
+        
+        <span class="comment">// Debounce search input and filter empty strings</span>
+        $searchText
+            .debounce(for: .milliseconds(<span class="number">300</span>), scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .filter { !$0.isEmpty }
+            .flatMap { [<span class="keyword">weak self</span>] query -> AnyPublisher&lt;[SearchResult], Never&gt; <span class="keyword">in</span>
+                <span class="keyword">guard let self</span> = <span class="keyword">self else</span> { 
+                    <span class="keyword">return</span> Just([]).eraseToAnyPublisher() 
+                }
+                
+                <span class="keyword">return self</span>.searchService
+                    .search(query: query)
+                    .catch { _ <span class="keyword">in</span> Just([]) }
+                    .eraseToAnyPublisher()
             }
-        }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$results)
     }
-    
-    <span class="keyword">fun</span> <span class="function">playSong</span>(song: Song) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.playSong(song)
-            _isPlaying.emit(<span class="keyword">true</span>)
-        }
-    }
-    
-    <span class="keyword">suspend fun</span> <span class="function">addToFavorites</span>(songId: String) = 
-        withContext(Dispatchers.IO) {
-            repository.addToFavorites(songId)
-        }
-}</div>
+}</pre>
+                    </div>
                 </div>
 
-                <div id="swiftui" class="code-content">
-                    <p class="code-description">🎨 <strong>SwiftUI Code aus der Cash Loop App:</strong> Moderne UI mit Animationen</p>
-                    <div class="code-block"><span class="comment">// Quiz View mit SwiftUI Animationen</span>
-<span class="keyword">struct</span> <span class="class">QuizView</span>: View {
-    <span class="keyword">@StateObject</span> <span class="keyword">private var</span> viewModel = QuizViewModel()
-    <span class="keyword">@State</span> <span class="keyword">private var</span> selectedAnswer: Int? = <span class="keyword">nil</span>
-    <span class="keyword">@State</span> <span class="keyword">private var</span> animateCorrect = <span class="keyword">false</span>
+                <div id="testing" class="code-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Comprehensive Unit Testing</span>
+                            <button class="copy-button" onclick="copyCode('testing')">Copy</button>
+                        </div>
+                        <pre><span class="comment">// Test-Driven Development Example</span>
+<span class="keyword">import</span> XCTest
+<span class="keyword">@testable import</span> MyApp
+
+<span class="keyword">class</span> <span class="class">UserViewModelTests</span>: XCTestCase {
+    <span class="keyword">var</span> sut: UserViewModel!
+    <span class="keyword">var</span> mockRepository: MockUserRepository!
+    
+    <span class="keyword">override func</span> <span class="function">setUp</span>() {
+        <span class="keyword">super</span>.setUp()
+        mockRepository = MockUserRepository()
+        sut = UserViewModel(repository: mockRepository)
+    }
+    
+    <span class="keyword">func</span> <span class="function">testLoadUserSuccess</span>() <span class="keyword">async</span> {
+        <span class="comment">// Given</span>
+        <span class="keyword">let</span> expectedUser = User(id: <span class="string">"123"</span>, name: <span class="string">"Test User"</span>)
+        mockRepository.userToReturn = expectedUser
+        
+        <span class="comment">// When</span>
+        <span class="keyword">await</span> sut.loadUser(id: <span class="string">"123"</span>)
+        
+        <span class="comment">// Then</span>
+        <span class="keyword">switch</span> sut.state {
+        <span class="keyword">case</span> .loaded(<span class="keyword">let</span> user):
+            XCTAssertEqual(user.id, expectedUser.id)
+            XCTAssertEqual(user.name, expectedUser.name)
+        <span class="keyword">default</span>:
+            XCTFail(<span class="string">"Expected loaded state"</span>)
+        }
+    }
+}</pre>
+                    </div>
+                </div>
+
+                <div id="performance" class="code-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Performance Optimization</span>
+                            <button class="copy-button" onclick="copyCode('performance')">Copy</button>
+                        </div>
+                        <pre><span class="comment">// Efficient List Rendering with Lazy Loading</span>
+<span class="keyword">struct</span> <span class="class">OptimizedListView</span>: View {
+    <span class="keyword">@StateObject</span> <span class="keyword">private var</span> viewModel = ListViewModel()
+    <span class="keyword">@State</span> <span class="keyword">private var</span> visibleRows = Set&lt;Int&gt;()
     
     <span class="keyword">var</span> body: <span class="keyword">some</span> View {
-        VStack(spacing: <span class="number">20</span>) {
-            <span class="comment">// Progress Bar</span>
-            ProgressView(value: viewModel.progress)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                .scaleEffect(y: <span class="number">2</span>)
-                .padding()
-            
-            <span class="comment">// Question Card</span>
-            VStack(alignment: .leading, spacing: <span class="number">15</span>) {
-                Text(viewModel.currentQuestion.text)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                
-                ForEach(viewModel.currentQuestion.answers.indices, 
-                        id: \.<span class="keyword">self</span>) { index <span class="keyword">in</span>
-                    AnswerButton(
-                        text: viewModel.currentQuestion.answers[index],
-                        isSelected: selectedAnswer == index,
-                        isCorrect: animateCorrect && 
-                                 index == viewModel.correctIndex
-                    ) {
-                        withAnimation(.spring()) {
-                            selectedAnswer = index
-                            checkAnswer(index)
+        ScrollView {
+            LazyVStack(spacing: <span class="number">0</span>) {
+                ForEach(viewModel.items.indices, id: \.<span class="keyword">self</span>) { index <span class="keyword">in</span>
+                    ItemRow(item: viewModel.items[index])
+                        .onAppear {
+                            visibleRows.insert(index)
+                            <span class="comment">// Prefetch next batch when approaching end</span>
+                            <span class="keyword">if</span> index == viewModel.items.count - <span class="number">5</span> {
+                                Task {
+                                    <span class="keyword">await</span> viewModel.loadMoreItems()
+                                }
+                            }
                         }
-                    }
+                        .onDisappear {
+                            visibleRows.remove(index)
+                        }
+                        .task {
+                            <span class="comment">// Load high-res image only when visible</span>
+                            <span class="keyword">if</span> visibleRows.contains(index) {
+                                <span class="keyword">await</span> viewModel.loadHighResImage(for: index)
+                            }
+                        }
                 }
             }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: <span class="number">20</span>)
-                    .fill(Color.white)
-                    .shadow(radius: <span class="number">10</span>)
-            )
-            .padding(.horizontal)
-            
-            <span class="comment">// Reward Display</span>
-            <span class="keyword">if</span> viewModel.showReward {
-                RewardView(amount: viewModel.currentReward)
-                    .transition(.scale.combined(with: .opacity))
-            }
         }
-        .navigationTitle(<span class="string">"Quiz 🎮"</span>)
+        .scrollIndicators(.hidden)
     }
-}</div>
-                </div>
-
-                <div id="firebase" class="code-content">
-                    <p class="code-description">🔥 <strong>Firebase Integration:</strong> Authentifizierung und Echtzeit-Datenbank</p>
-                    <div class="code-block"><span class="comment">// Firebase Auth Service mit Error Handling</span>
-<span class="keyword">class</span> <span class="class">AuthenticationService</span>: ObservableObject {
-    <span class="keyword">@Published</span> <span class="keyword">var</span> user: User?
-    <span class="keyword">@Published</span> <span class="keyword">var</span> isAuthenticated = <span class="keyword">false</span>
-    
-    <span class="keyword">init</span>() {
-        setupAuthListener()
-    }
-    
-    <span class="keyword">private func</span> <span class="function">setupAuthListener</span>() {
-        Auth.auth().addStateDidChangeListener { _, user <span class="keyword">in</span>
-            <span class="keyword">self</span>.user = user
-            <span class="keyword">self</span>.isAuthenticated = user != <span class="keyword">nil</span>
-        }
-    }
-    
-    <span class="keyword">func</span> <span class="function">signIn</span>(email: String, password: String) <span class="keyword">async throws</span> -> AuthDataResult {
-        <span class="keyword">do</span> {
-            <span class="keyword">let</span> result = <span class="keyword">try await</span> Auth.auth().signIn(
-                withEmail: email,
-                password: password
-            )
-            
-            <span class="comment">// Update user profile in Firestore</span>
-            <span class="keyword">try await</span> updateUserProfile(userId: result.user.uid)
-            
-            <span class="keyword">return</span> result
-        } <span class="keyword">catch</span> {
-            <span class="keyword">throw</span> AuthError.signInFailed(error.localizedDescription)
-        }
-    }
-    
-    <span class="keyword">func</span> <span class="function">signInWithGoogle</span>() <span class="keyword">async throws</span> {
-        <span class="keyword">guard let</span> clientID = FirebaseApp.app()?.options.clientID <span class="keyword">else</span> {
-            <span class="keyword">throw</span> AuthError.missingClientID
-        }
-        
-        <span class="keyword">let</span> config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-        
-        <span class="keyword">let</span> result = <span class="keyword">try await</span> GIDSignIn.sharedInstance.signIn(
-            withPresenting: rootViewController
-        )
-        
-        <span class="keyword">let</span> credential = GoogleAuthProvider.credential(
-            withIDToken: idToken,
-            accessToken: result.user.accessToken.tokenString
-        )
-        
-        <span class="keyword">try await</span> Auth.auth().signIn(with: credential)
-    }
-}</div>
+}</pre>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects">
-            <h2>📂 Meine Projekte</h2>
-            <div class="project-list">
-                <a href="projekt1.html" class="project-item">
-                    <img src="assets/images/1.png" alt="Folk Music App">
-                    <h3>Folk Music App 🎵</h3>
-                    <p>Eine <strong>Android-App</strong> 🤖 zur Wiedergabe <strong>traditioneller Musik</strong> 🎶 mit <strong>Kotlin</strong> und <strong>MediaPlayer</strong>.</p>
-                </a>
-                <a href="projekt2.html" class="project-item">
-                    <img src="assets/images/2.png" alt="Chigoo Chat App">
-                    <h3>Chigoo Chat App 💬</h3>
-                    <p>Eine <strong>iOS-Chat-App</strong> 🍎 für schnelle und zuverlässige <strong>Kommunikation</strong> 📩 mit <strong>Echtzeit-Chat</strong> und <strong>Benutzerprofilerstellung</strong>.</p>
-                </a>
-                <a href="projekt3.html" class="project-item">
-                    <img src="assets/images/cashLoop.png" alt="Cash Loop App">
-                    <h3>Cash Loop App 🎮</h3>
-                    <p>Eine <strong>iOS-App</strong> 🍎 für <strong>Quizspiele</strong> ❓ und <strong>Geldprämien</strong> 💰 mit <strong>Firebase</strong> und <strong>SwiftUI</strong>.</p>
-                </a>
-                <a href="projekt4.html" class="project-item">
-                    <h3>Design Mit Figma 🏞️</h3>
-                    <img src="assets/images/NotizApp_figam.png" alt="Notiz-App">
-                    <h3>Notiz-App 📝</h3>
-                    <p>Eine <strong>iOS-App</strong> 🍎 für das Erstellen und Verwalten von <strong>Notizen</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
-                </a>
-                <a href="projekt5.html" class="project-item">
-                    <h3>Design Mit Figma 🏙️</h3>
-                    <img src="assets/images/shingal_musiga_lofi_figma.png" alt="Shingal Music Streaming App">
-                    <h3>Shingal Music Streaming App 🎵</h3>
-                    <p>Eine <strong>iOS-App</strong> 🍎 für das Streamen von <strong>Musik</strong>, gestaltet mit <strong>Figma</strong> 🎨.</p>
-                </a>
+        <!-- Experience Timeline -->
+        <section id="experience">
+            <div class="section-header">
+                <h2>Beruflicher Werdegang</h2>
+                <p>Meine Entwicklung zum Mobile Development Expert</p>
             </div>
-        </section>
-
-        <section id="about">
-            <h2>ℹ️ Über mich</h2>
-            <p>Mein vollständiger Name ist <strong>Sami Omar</strong>, aber ich bin in meinem Portfolio und meinen Projekten einfach als <strong>Sami</strong> bekannt. Ich habe vom <strong>17. Juli 2023 bis 18. Juli 2024</strong> 📅 eine umfassende <strong>Ausbildung zur IT-Fachkraft für App-Entwicklung</strong> 🎓 (<strong>iOS & Android</strong> 📱) am <strong>Syntax Institut</strong> 🏫 erfolgreich abgeschlossen. Die Weiterbildung umfasste <strong>2300 Unterrichtseinheiten</strong> ⏰ und beinhaltete Module wie <strong>Mobile UX/UI Design</strong> 🎨, <strong>Grundlagen der Programmierung</strong> 💻, <strong>Android App Development</strong> 🤖 und <strong>iOS App Development</strong> 🍎.</p>
             
-            <h3>📊 Mein GitHub-Profil</h3>
-            <div class="github-contributions">
-                <div class="graph">
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-3"></div>
-                    <div class="day level-1"></div>
-                    <div class="day level-0"></div>
-                    <div class="day level-4"></div>
-                    <div class="day level-2"></div>
-                    <div class="day level-1"></div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-card">
+                            <div class="timeline-date">2023 - 2024</div>
+                            <h3>IT-Fachkraft Ausbildung</h3>
+                            <p>Intensive 2300-stündige Weiterbildung am Syntax Institut. Spezialisierung auf iOS & Android Development 
+                               mit Fokus auf moderne Architekturen und Best Practices.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div style="flex: 1;"></div>
+                    </div>
                 </div>
-            </div>
-            <p>Besuche mein GitHub-Profil: <a href="https://github.com/SamiOmar" target="_blank">github.com/SamiOmar</a> 🔗</p>
-        </section>
-
-        <section id="workflow">
-            <h2>⚙️ Meine Arbeitsweise</h2>
-            <div class="workflow-section">
-                <p>Strukturierter Entwicklungsprozess von der Idee bis zum fertigen Produkt</p>
                 
-                <div class="workflow-grid">
-                    <div class="workflow-card">
-                        <h4>📋 1. Planung & Design</h4>
-                        <ul>
-                            <li>Requirements Engineering</li>
-                            <li>User Stories erstellen</li>
-                            <li>Wireframes in Figma</li>
-                            <li>UI/UX Prototyping</li>
-                            <li>Design System aufbauen</li>
-                        </ul>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div style="flex: 1;"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-date">2020 - Heute</div>
+                            <h3>Freiberuflicher Mobile Developer</h3>
+                            <p>Entwicklung von über 15 erfolgreichen Apps für verschiedene Kunden. Spezialisierung auf 
+                               skalierbare Architekturen und User-Experience-Optimierung.</p>
+                        </div>
                     </div>
-
-                    <div class="workflow-card">
-                        <h4>🏗️ 2. Architektur</h4>
-                        <ul>
-                            <li>MVVM Pattern</li>
-                            <li>Clean Architecture</li>
-                            <li>Repository Pattern</li>
-                            <li>Dependency Injection</li>
-                            <li>Modularisierung</li>
-                        </ul>
-                    </div>
-
-                    <div class="workflow-card">
-                        <h4>💻 3. Entwicklung</h4>
-                        <ul>
-                            <li>Test-Driven Development</li>
-                            <li>Code Reviews</li>
-                            <li>Git Flow Workflow</li>
-                            <li>CI/CD Integration</li>
-                            <li>Performance Optimierung</li>
-                        </ul>
-                    </div>
-
-                    <div class="workflow-card">
-                        <h4>🚀 4. Deployment</h4>
-                        <ul>
-                            <li>Beta Testing (TestFlight)</li>
-                            <li>App Store Optimization</li>
-                            <li>Release Management</li>
-                            <li>Monitoring & Analytics</li>
-                            <li>User Feedback Integration</li>
-                        </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-card">
+                            <div class="timeline-date">2024 - Heute</div>
+                            <h3>Tech Lead & Consultant</h3>
+                            <p>Beratung von Startups und Unternehmen bei der digitalen Transformation. 
+                               Entwicklung von Mobile-First-Strategien und technischen Roadmaps.</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div style="flex: 1;"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills">
-            <h2>🛠️ Technologie Stack</h2>
-            <div class="tech-stack-visual">
-                <div class="tech-category">
-                    <h4>iOS Development</h4>
-                    <div class="tech-items">
-                        <span class="tech-item">Swift 5.9</span>
-                        <span class="tech-item">SwiftUI</span>
-                        <span class="tech-item">UIKit</span>
-                        <span class="tech-item">Combine</span>
-                        <span class="tech-item">Core Data</span>
-                        <span class="tech-item">CloudKit</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h4>Android Development</h4>
-                    <div class="tech-items">
-                        <span class="tech-item">Kotlin</span>
-                        <span class="tech-item">Jetpack Compose</span>
-                        <span class="tech-item">Room</span>
-                        <span class="tech-item">Retrofit</span>
-                        <span class="tech-item">Coroutines</span>
-                        <span class="tech-item">Hilt</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h4>Backend & Services</h4>
-                    <div class="tech-items">
-                        <span class="tech-item">Firebase</span>
-                        <span class="tech-item">REST APIs</span>
-                        <span class="tech-item">GraphQL</span>
-                        <span class="tech-item">WebSockets</span>
-                        <span class="tech-item">OAuth 2.0</span>
-                        <span class="tech-item">JWT</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h4>Tools & Workflow</h4>
-                    <div class="tech-items">
-                        <span class="tech-item">Git</span>
-                        <span class="tech-item">GitHub Actions</span>
-                        <span class="tech-item">Fastlane</span>
-                        <span class="tech-item">Figma</span>
-                        <span class="tech-item">Postman</span>
-                        <span class="tech-item">Charles Proxy</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- Contact Section -->
         <section id="contact">
-            <h2>📧 Kontakt</h2>
-            <p>Email: <a href="mailto:sami.omar.7345@gmail.com">sami.omar.7345@gmail.com</a> ✉️</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/samiomar234" target="_blank">linkedin.com/in/samiomar234</a> 🔗</p>
-            <p>GitHub: <a href="https://github.com/SamiOmar" target="_blank">github.com/SamiOmar</a> 🗃️</p>
+            <div class="section-header">
+                <h2>Let's Connect</h2>
+                <p>Ich freue mich auf spannende Projekte und neue Herausforderungen</p>
+            </div>
+            
+            <div class="contact-grid">
+                <a href="mailto:sami.omar.7345@gmail.com" class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>E-Mail</h3>
+                    <p>sami.omar.7345@gmail.com</p>
+                </a>
+                
+                <a href="https://linkedin.com/in/samiomar234" target="_blank" class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <p>linkedin.com/in/samiomar234</p>
+                </a>
+                
+                <a href="https://github.com/SamiOmar" target="_blank" class="contact-card">
+                    <div class="contact-icon">🚀</div>
+                    <h3>GitHub</h3>
+                    <p>github.com/SamiOmar</p>
+                </a>
+            </div>
         </section>
-    </main>
+    </div>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2025 Sami - Alle Rechte vorbehalten 📜</p>
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://github.com/SamiOmar" class="social-link" target="_blank">
+                    <span>G</span>
+                </a>
+                <a href="https://linkedin.com/in/samiomar234" class="social-link" target="_blank">
+                    <span>L</span>
+                </a>
+                <a href="mailto:sami.omar.7345@gmail.com" class="social-link">
+                    <span>@</span>
+                </a>
+            </div>
+            <p>&copy; 2025 Sami Omar. Crafted with passion for excellence.</p>
+        </div>
     </footer>
 
     <script>
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Code Tab Switching
         function showCode(language) {
-            // Hide all code contents
             const contents = document.querySelectorAll('.code-content');
+            const tabs = document.querySelectorAll('.code-tab');
+            
             contents.forEach(content => {
                 content.classList.remove('active');
             });
             
-            // Remove active class from all tabs
-            const tabs = document.querySelectorAll('.code-tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Show selected content
             document.getElementById(language).classList.add('active');
-            
-            // Add active class to clicked tab
             event.target.classList.add('active');
+        }
+
+        // Copy Code Function
+        function copyCode(section) {
+            const codeBlock = document.querySelector(`#${section} pre`);
+            const textArea = document.createElement('textarea');
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 2000);
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu if open
+                const navMenu = document.getElementById('navMenu');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Remove loader after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loader').style.display = 'none';
+            }, 1500);
+        });
+
+        // Add typing effect to hero title
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+            let index = 0;
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    heroTitle.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 1600);
         }
     </script>
 </body>
