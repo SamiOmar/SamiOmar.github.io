@@ -849,62 +849,7 @@
             }
         }
 
-        /* Print Styles */
-        @media print {
-            nav, .hero, footer {
-                display: none;
-            }
-
-            .container {
-                margin-top: 0;
-                box-shadow: none;
-            }
-
-            .project-card, .skill-card {
-                break-inside: avoid;
-            }
-        }
-
-        /* Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Focus Styles */
-        a:focus, button:focus {
-            outline: 3px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s forwards;
-        }
-
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideInLeft 0.8s forwards;
-        }
-
-        @keyframes slideInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Performance Metrics */
+        /* Metrics Grid */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1135,48 +1080,6 @@
                         </div>
                     </div>
                 </a>
-
-                <a href="projekt4.html" class="project-card" style="text-decoration: none; color: inherit;">
-                    <img src="assets/images/NotizApp_figam.png" alt="Notiz-App Design" class="project-image">
-                    <div class="project-overlay">
-                        <div style="color: white;">
-                            <h3>UI/UX Design</h3>
-                            <p>Figma Prototype</p>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Notiz-App - Smart Notes 📝</h3>
-                        <p>iOS-App für intelligentes Notizmanagement mit Cloud-Sync, Tags, und Markdown-Support. 
-                           Komplettes UI/UX Design in Figma erstellt.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Figma</span>
-                            <span class="tech-tag">SwiftUI</span>
-                            <span class="tech-tag">iCloud</span>
-                            <span class="tech-tag">CoreData</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="projekt5.html" class="project-card" style="text-decoration: none; color: inherit;">
-                    <img src="assets/images/shingal_musiga_lofi_figma.png" alt="Shingal Music" class="project-image">
-                    <div class="project-overlay">
-                        <div style="color: white;">
-                            <h3>Music Streaming</h3>
-                            <p>Design Concept</p>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Shingal Music - Lo-Fi Streaming 🎧</h3>
-                        <p>Spezialisierte Music-Streaming-App für Lo-Fi und Chill-Music. 
-                           Innovative UI mit Fokus auf entspanntes Hörerlebnis.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Figma</span>
-                            <span class="tech-tag">Swift</span>
-                            <span class="tech-tag">AVFoundation</span>
-                            <span class="tech-tag">Spotify API</span>
-                        </div>
-                    </div>
-                </a>
             </div>
         </section>
 
@@ -1189,10 +1092,10 @@
             
             <div class="code-showcase">
                 <div class="code-tabs">
-                    <button class="code-tab active" onclick="showCode('architecture')">Clean Architecture</button>
-                    <button class="code-tab" onclick="showCode('reactive')">Reactive Programming</button>
-                    <button class="code-tab" onclick="showCode('testing')">Unit Testing</button>
-                    <button class="code-tab" onclick="showCode('performance')">Performance</button>
+                    <button class="code-tab active" onclick="showCode('architecture', this)">Clean Architecture</button>
+                    <button class="code-tab" onclick="showCode('reactive', this)">Reactive Programming</button>
+                    <button class="code-tab" onclick="showCode('testing', this)">Unit Testing</button>
+                    <button class="code-tab" onclick="showCode('performance', this)">Performance</button>
                 </div>
 
                 <div id="architecture" class="code-content active">
@@ -1472,26 +1375,31 @@
             navMenu.classList.toggle('active');
         }
 
-        // Code Tab Switching - Simple Working Version
-        function showCode(language) {
+        // Code Tab Switching - CORRECTED VERSION
+        function showCode(language, element) {
             // Hide all code contents
-            document.getElementById('architecture').style.display = 'none';
-            document.getElementById('reactive').style.display = 'none';
-            document.getElementById('testing').style.display = 'none';
-            document.getElementById('performance').style.display = 'none';
+            const contents = document.querySelectorAll('.code-content');
+            contents.forEach(content => {
+                content.style.display = 'none';
+                content.classList.remove('active');
+            });
             
             // Remove active class from all tabs
-            var tabs = document.getElementsByClassName('code-tab');
-            for (var i = 0; i < tabs.length; i++) {
-                tabs[i].classList.remove('active');
-            }
+            const tabs = document.querySelectorAll('.code-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
             
             // Show selected content
-            document.getElementById(language).style.display = 'block';
+            const selectedContent = document.getElementById(language);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+                selectedContent.classList.add('active');
+            }
             
             // Add active class to clicked tab
-            if (event && event.target) {
-                event.target.classList.add('active');
+            if (element) {
+                element.classList.add('active');
             }
         }
 
@@ -1505,12 +1413,17 @@
             document.execCommand('copy');
             document.body.removeChild(textArea);
             
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = 'Copied!';
-            setTimeout(() => {
-                button.textContent = originalText;
-            }, 2000);
+            // Find the button that was clicked
+            const buttons = document.querySelectorAll('.copy-button');
+            buttons.forEach(button => {
+                if (button.onclick && button.onclick.toString().includes(section)) {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 2000);
+                }
+            });
         }
 
         // Smooth scroll for navigation links
@@ -1556,15 +1469,12 @@
             observer.observe(section);
         });
 
-        // Remove old event listener code
-        // Initialize code tabs functionality on page load
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Set up click handlers for code tabs - not needed anymore as we use onclick
-            // Just ensure first tab content is visible
+            // Make sure first tab is visible
             const firstContent = document.getElementById('architecture');
             if (firstContent) {
                 firstContent.style.display = 'block';
-                firstContent.classList.add('active');
             }
         });
 
