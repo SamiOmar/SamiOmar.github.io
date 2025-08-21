@@ -1189,10 +1189,10 @@
             
             <div class="code-showcase">
                 <div class="code-tabs">
-                    <button class="code-tab active" onclick="showCode('architecture', event)">Clean Architecture</button>
-                    <button class="code-tab" onclick="showCode('reactive', event)">Reactive Programming</button>
-                    <button class="code-tab" onclick="showCode('testing', event)">Unit Testing</button>
-                    <button class="code-tab" onclick="showCode('performance', event)">Performance</button>
+                    <button class="code-tab active" onclick="showCode('architecture')">Clean Architecture</button>
+                    <button class="code-tab" onclick="showCode('reactive')">Reactive Programming</button>
+                    <button class="code-tab" onclick="showCode('testing')">Unit Testing</button>
+                    <button class="code-tab" onclick="showCode('performance')">Performance</button>
                 </div>
 
                 <div id="architecture" class="code-content active">
@@ -1472,50 +1472,28 @@
             navMenu.classList.toggle('active');
         }
 
-        // Code Tab Switching - Fixed Version
-        function showCode(language, event) {
-            // Prevent default button behavior
-            if (event) {
-                event.preventDefault();
+        // Code Tab Switching - Simple Working Version
+        function showCode(language) {
+            // Hide all code contents
+            document.getElementById('architecture').style.display = 'none';
+            document.getElementById('reactive').style.display = 'none';
+            document.getElementById('testing').style.display = 'none';
+            document.getElementById('performance').style.display = 'none';
+            
+            // Remove active class from all tabs
+            var tabs = document.getElementsByClassName('code-tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
             }
-            
-            // Get all contents and tabs
-            const contents = document.querySelectorAll('.code-content');
-            const tabs = document.querySelectorAll('.code-tab');
-            
-            // Hide all contents
-            contents.forEach(content => {
-                content.classList.remove('active');
-                content.style.display = 'none';
-            });
-            
-            // Remove active from all tabs
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
             
             // Show selected content
-            const selectedContent = document.getElementById(language);
-            if (selectedContent) {
-                selectedContent.classList.add('active');
-                selectedContent.style.display = 'block';
-            }
+            document.getElementById(language).style.display = 'block';
             
-            // Activate the clicked tab
+            // Add active class to clicked tab
             if (event && event.target) {
                 event.target.classList.add('active');
             }
         }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ensure first tab is active
-            const firstContent = document.getElementById('architecture');
-            if (firstContent) {
-                firstContent.style.display = 'block';
-                firstContent.classList.add('active');
-            }
-        });
 
         // Copy Code Function
         function copyCode(section) {
