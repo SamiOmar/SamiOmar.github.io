@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sami Omar - Professional Mobile App Developer specializing in iOS (Swift, SwiftUI) and Android (Kotlin) development. Creating innovative, user-centric mobile solutions since 2020.">
+    <meta name="description" content="Junior Mobile Developer mit intensiver Ausbildung in iOS (Swift) und Android (Kotlin). Suche Berufseinstieg in Dortmund.">
     <meta name="keywords" content="Mobile Developer, iOS Developer, Android Developer, Swift, Kotlin, SwiftUI, Firebase, App Development">
     <meta name="author" content="Sami Omar">
-    <title>Sami Omar - Senior Mobile Developer | iOS & Android Expert</title>
+    <title>Sami Omar - Junior Mobile Developer | iOS & Android</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -331,10 +331,10 @@
             margin: 0 auto;
         }
 
-        /* Skills Grid */
+        /* Skills (Junior-Kategorien) */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
@@ -343,57 +343,26 @@
             background: white;
             border: 1px solid var(--border);
             border-radius: 15px;
-            padding: 30px;
-            text-align: center;
+            padding: 24px 24px 16px 24px;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .skill-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .skill-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
-            color: white;
         }
 
         .skill-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
             color: var(--dark);
         }
 
-        .skill-card p {
-            color: var(--text-light);
-            line-height: 1.6;
+        .skill-list {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .skill-list li::before {
+            content: '•';
+            color: var(--primary);
+            margin-right: 8px;
         }
 
         /* Projects Grid */
@@ -464,6 +433,17 @@
             color: var(--text-light);
             margin-bottom: 15px;
             line-height: 1.6;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: var(--light);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
         }
 
         .project-tech {
@@ -1049,12 +1029,12 @@
         <div class="hero-content">
             <img src="assets/images/bilder.png" alt="Sami Omar" class="profile-image">
             <h1>Sami Omar</h1>
-            <p class="subtitle">Senior Mobile Developer</p>
+            <p class="subtitle">Mobile Developer | iOS & Android</p>
             <div class="hero-badges">
-                <span class="badge">iOS Expert</span>
-                <span class="badge">Android Specialist</span>
-                <span class="badge">UI/UX Designer</span>
-                <span class="badge">Firebase Professional</span>
+                <span class="badge">iOS Kenntnisse</span>
+                <span class="badge">Android Kenntnisse</span>
+                <span class="badge">UI/UX Grundlagen</span>
+                <span class="badge">Firebase Kenntnisse</span>
             </div>
             <div class="cta-buttons">
                 <a href="#projects" class="btn btn-primary">
@@ -1075,32 +1055,34 @@
         <section id="about">
             <div class="section-header">
                 <h2>Über mich</h2>
-                <p>Leidenschaftlicher Mobile Developer mit Fokus auf innovative Lösungen</p>
+                <p>Fresh Graduate mit intensiver Praxisausbildung und Leidenschaft für moderne App-Entwicklung</p>
             </div>
             
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-number">4+</div>
-                    <div class="metric-label">Jahre Erfahrung</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-number">15+</div>
-                    <div class="metric-label">Abgeschlossene Projekte</div>
-                </div>
-                <div class="metric-card">
                     <div class="metric-number">2300</div>
-                    <div class="metric-label">Stunden Weiterbildung</div>
+                    <div class="metric-label">Stunden Intensivausbildung</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-number">100%</div>
-                    <div class="metric-label">Kundenzufriedenheit</div>
+                    <div class="metric-number">8</div>
+                    <div class="metric-label">Portfolio-Projekte</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">8</div>
+                    <div class="metric-label">Monate iOS & Android</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">2024</div>
+                    <div class="metric-label">Abschlussjahr</div>
                 </div>
             </div>
 
             <p style="text-align: center; max-width: 800px; margin: 40px auto; line-height: 1.8; color: var(--text-light);">
-                Als spezialisierter Mobile Developer mit über 4 Jahren Erfahrung entwickle ich hochwertige iOS- und Android-Anwendungen,
-                die durch intuitive Benutzeroberflächen und robuste Architektur überzeugen. Meine Expertise umfasst die gesamte
-                Entwicklungskette von der Konzeption über das Design bis zur Veröffentlichung im App Store.
+                Als frisch ausgebildeter Mobile Developer mit 12-monatiger Intensivausbildung (2300 Stunden)
+                entwickle ich iOS- und Android-Anwendungen mit modernen Architekturen. Meine Ausbildung beim
+                Syntax Institut umfasste 4 Monate iOS und 4 Monate Android Development mit praktischen Projekten.
+                Ich suche meinen Berufseinstieg als Junior Developer und bringe solide Kenntnisse in Swift,
+                Kotlin, MVVM und modernen Frameworks mit.
             </p>
         </section>
 
@@ -1113,34 +1095,31 @@
             
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-icon">📱</div>
-                    <h3>iOS Development</h3>
-                    <p>Swift, SwiftUI, UIKit, Core Data, CloudKit, Combine Framework</p>
+                    <h3>Kernkompetenzen</h3>
+                    <ul class="skill-list">
+                        <li>Swift & SwiftUI (4 Monate intensiv)</li>
+                        <li>Kotlin & Jetpack Compose (4 Monate intensiv)</li>
+                        <li>MVVM Architecture</li>
+                        <li>Git & GitHub</li>
+                    </ul>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🤖</div>
-                    <h3>Android Development</h3>
-                    <p>Kotlin, Jetpack Compose, Room, Retrofit, Coroutines, Hilt</p>
+                    <h3>Erweiterte Kenntnisse</h3>
+                    <ul class="skill-list">
+                        <li>Firebase Integration</li>
+                        <li>REST APIs</li>
+                        <li>Room Database</li>
+                        <li>Core Data</li>
+                    </ul>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🔥</div>
-                    <h3>Backend & Cloud</h3>
-                    <p>Firebase, REST APIs, GraphQL, WebSockets, OAuth 2.0, JWT</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>UI/UX Design</h3>
-                    <p>Figma, Adobe XD, Sketch, Material Design, Human Interface Guidelines</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">⚡</div>
-                    <h3>Performance</h3>
-                    <p>App Optimization, Memory Management, Profiling, Testing, CI/CD</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🛠️</div>
-                    <h3>Tools & Workflow</h3>
-                    <p>Git, GitHub Actions, Fastlane, Xcode, Android Studio, VS Code</p>
+                    <h3>In Einarbeitung</h3>
+                    <ul class="skill-list">
+                        <li>Objective-C (für Legacy iOS Apps)</li>
+                        <li>Mobile Security</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Testing Frameworks</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -1149,7 +1128,7 @@
         <section id="projects">
             <div class="section-header">
                 <h2>Meine Projekte</h2>
-                <p>Alle entwickelten Anwendungen im Überblick</p>
+                <p>Portfolio-Projekte aus meiner Ausbildung und Selbststudium</p>
             </div>
             
             <div class="projects-grid">
@@ -1162,6 +1141,7 @@
                         </div>
                     </div>
                     <div class="project-info">
+                        <div class="project-tag">Privates Projekt • 2024</div>
                         <h3>Cash Loop - Quiz & Rewards 🎮</h3>
                         <p>Innovative iOS-App mit Gamification-Elementen, Echtzeit-Multiplayer und In-App-Purchases.
                            Entwickelt mit SwiftUI und Firebase für skalierbare Performance.</p>
@@ -1170,6 +1150,9 @@
                             <span class="tech-tag">Firebase</span>
                             <span class="tech-tag">CloudKit</span>
                             <span class="tech-tag">StoreKit</span>
+                        </div>
+                        <div style="margin-top:10px">
+                            <a href="https://github.com/SamiOmar" target="_blank" class="tech-tag" style="text-decoration:none;">GitHub ansehen</a>
                         </div>
                     </div>
                 </a>
@@ -1183,6 +1166,7 @@
                         </div>
                     </div>
                     <div class="project-info">
+                        <div class="project-tag">Lernprojekt • 2024</div>
                         <h3>Chigoo - Secure Chat Platform 💬</h3>
                         <p>End-to-End verschlüsselte Messaging-App mit Voice/Video-Calls, File-Sharing und
                            Team-Collaboration Features. DSGVO-konform entwickelt.</p>
@@ -1191,6 +1175,9 @@
                             <span class="tech-tag">WebRTC</span>
                             <span class="tech-tag">Socket.io</span>
                             <span class="tech-tag">CoreData</span>
+                        </div>
+                        <div style="margin-top:10px">
+                            <a href="https://github.com/SamiOmar" target="_blank" class="tech-tag" style="text-decoration:none;">GitHub ansehen</a>
                         </div>
                     </div>
                 </a>
@@ -1204,6 +1191,7 @@
                         </div>
                     </div>
                     <div class="project-info">
+                        <div class="project-tag">Lernprojekt • 2024</div>
                         <h3>Folk Music - Streaming App 🎵</h3>
                         <p>Android Music-Streaming-Plattform mit offline Playback, personalisierte Playlists
                            und KI-basierte Musikempfehlungen.</p>
@@ -1212,6 +1200,9 @@
                             <span class="tech-tag">ExoPlayer</span>
                             <span class="tech-tag">Room DB</span>
                             <span class="tech-tag">ML Kit</span>
+                        </div>
+                        <div style="margin-top:10px">
+                            <a href="https://github.com/SamiOmar" target="_blank" class="tech-tag" style="text-decoration:none;">GitHub ansehen</a>
                         </div>
                     </div>
                 </a>
@@ -1225,6 +1216,7 @@
                         </div>
                     </div>
                     <div class="project-info">
+                        <div class="project-tag">Ausbildungsprojekt • 2024</div>
                         <h3>Notiz-App - Smart Notes 📝</h3>
                         <p>iOS-App für intelligentes Notizmanagement mit Cloud-Sync, Tags, und Markdown-Support.
                            Komplettes UI/UX Design in Figma erstellt.</p>
@@ -1233,6 +1225,9 @@
                             <span class="tech-tag">SwiftUI</span>
                             <span class="tech-tag">iCloud</span>
                             <span class="tech-tag">CoreData</span>
+                        </div>
+                        <div style="margin-top:10px">
+                            <a href="https://github.com/SamiOmar" target="_blank" class="tech-tag" style="text-decoration:none;">GitHub ansehen</a>
                         </div>
                     </div>
                 </a>
@@ -1246,6 +1241,7 @@
                         </div>
                     </div>
                     <div class="project-info">
+                        <div class="project-tag">Lernprojekt • 2024</div>
                         <h3>Shingal Music - Lo-Fi Streaming 🎧</h3>
                         <p>Spezialisierte Music-Streaming-App für Lo-Fi und Chill-Music.
                            Innovative UI mit Fokus auf entspanntes Hörerlebnis.</p>
@@ -1255,8 +1251,30 @@
                             <span class="tech-tag">AVFoundation</span>
                             <span class="tech-tag">Spotify API</span>
                         </div>
+                        <div style="margin-top:10px">
+                            <a href="https://github.com/SamiOmar" target="_blank" class="tech-tag" style="text-decoration:none;">GitHub ansehen</a>
+                        </div>
                     </div>
                 </a>
+            </div>
+        </section>
+
+        <!-- Zertifizierung (optional) -->
+        <section id="certification">
+            <div class="section-header">
+                <h2>Zertifizierung</h2>
+                <p>IT-Fachkraft für App-Entwicklung (iOS & Android) – Syntax Institut</p>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: center;">
+                <img src="assets/images/syntax-zertifikat.jpg" alt="Syntax Institut Zertifikat" style="width:100%; border-radius:12px; border:1px solid var(--border);">
+                <div>
+                    <ul style="line-height:1.9; color: var(--text);">
+                        <li>2300 Unterrichtseinheiten • Abschluss: Juli 2024</li>
+                        <li>iOS (Swift) und Android (Kotlin) – je 4 Monate intensiv</li>
+                        <li>Projektorientiertes Lernen mit Abschlussprojekten</li>
+                        <li>Note/Bewertung: (falls vorhanden)</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -1281,7 +1299,8 @@
                             <span class="code-title">MVVM Architecture with Repository Pattern</span>
                             <button class="copy-button" onclick="copyCode('architecture', this)">Copy</button>
                         </div>
-                        <pre><span class="comment">// Clean Architecture Implementation</span>
+                        <pre><span class="comment">// Beispiel aus Lernprojekt: Clean Architecture Implementation</span>
+<span class="comment">// Demonstriert Verständnis von SOLID Principles und Dependency Injection</span>
 <span class="keyword">protocol</span> <span class="class">UserRepositoryProtocol</span> {
     <span class="keyword">func</span> <span class="function">fetchUser</span>(id: String) <span class="keyword">async throws</span> -> User
     <span class="keyword">func</span> <span class="function">updateUser</span>(_ user: User) <span class="keyword">async throws</span>
@@ -1320,7 +1339,8 @@
                             <span class="code-title">Combine Framework - Reactive Streams</span>
                             <button class="copy-button" onclick="copyCode('reactive', this)">Copy</button>
                         </div>
-                        <pre><span class="comment">// Reactive Programming with Combine</span>
+                        <pre><span class="comment">// Beispiel aus Lernprojekt: Reactive Programming with Combine</span>
+<span class="comment">// Debounce, Fehlerbehandlung und Main-Thread-Delivery</span>
 <span class="keyword">class</span> <span class="class">SearchViewModel</span>: ObservableObject {
     <span class="keyword">@Published</span> <span class="keyword">var</span> searchText = <span class="string">""</span>
     <span class="keyword">@Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> results: [SearchResult] = []
@@ -1359,7 +1379,8 @@
                             <span class="code-title">Comprehensive Unit Testing</span>
                             <button class="copy-button" onclick="copyCode('testing', this)">Copy</button>
                         </div>
-                        <pre><span class="comment">// Test-Driven Development Example</span>
+                        <pre><span class="comment">// Beispiel aus Lernprojekt: Test-Driven Development</span>
+<span class="comment">// Unit-Tests für ViewModel-State und Repository-Interaktionen</span>
 <span class="keyword">import</span> XCTest
 <span class="keyword">@testable import</span> MyApp
 
@@ -1400,7 +1421,8 @@
                             <span class="code-title">Performance Optimization</span>
                             <button class="copy-button" onclick="copyCode('performance', this)">Copy</button>
                         </div>
-                        <pre><span class="comment">// Efficient List Rendering with Lazy Loading</span>
+                        <pre><span class="comment">// Beispiel aus Lernprojekt: Efficient List Rendering with Lazy Loading</span>
+<span class="comment">// Performance: Prefetching, Lazy-Stacks und bedingtes Laden</span>
 <span class="keyword">struct</span> <span class="class">OptimizedListView</span>: View {
     <span class="keyword">@StateObject</span> <span class="keyword">private var</span> viewModel = ListViewModel()
     <span class="keyword">@State</span> <span class="keyword">private var</span> visibleRows = Set&lt;Int&gt;()
@@ -1439,50 +1461,58 @@
             </div>
         </section>
 
+        <!-- Why Junior Section -->
+        <section id="why-junior">
+            <div class="section-header">
+                <h2>Warum ich als Junior starte</h2>
+                <p>Solide Grundlagen aus 2300 Praxisstunden – bereit, professionell zu wachsen</p>
+            </div>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 20px; line-height: 1.8; color: var(--text-light);">
+                Nach meiner intensiven 12-monatigen Ausbildung mit 2300 Praxisstunden verfüge ich über solide Grundlagen in der Mobile-Entwicklung.
+                Ich suche bewusst eine Junior-Position, um:
+            </p>
+            <ul style="max-width: 800px; margin: 0 auto; line-height: 1.9; color: var(--text);">
+                <li>Von erfahrenen Entwicklern Best Practices zu lernen</li>
+                <li>In professionellen Team-Strukturen zu wachsen</li>
+                <li>Enterprise-Standards und Security-Konzepte zu meistern</li>
+                <li>Langfristig zum Senior Developer zu entwickeln</li>
+            </ul>
+        </section>
+
         <!-- Experience Timeline -->
         <section id="experience">
-            <div class="section-header">
-                <h2>Beruflicher Werdegang</h2>
-                <p>Meine Entwicklung zum Mobile Development Expert</p>
-            </div>
-            
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-card">
-                            <div class="timeline-date">2023 - 2024</div>
-                            <h3>IT-Fachkraft Ausbildung</h3>
-                            <p>Intensive 2300-stündige Weiterbildung am Syntax Institut. Spezialisierung auf iOS & Android Development
-                               mit Fokus auf moderne Architekturen und Best Practices.</p>
+                            <div class="timeline-date">07/2023 - 07/2024</div>
+                            <h3>Intensivausbildung Mobile Development</h3>
+                            <p>12-monatige Vollzeit-Weiterbildung (2300 Stunden) am Syntax Institut<br>
+                               • 2 Monate UI/UX Design<br>
+                               • 2 Monate Programmierung Grundlagen<br>
+                               • 4 Monate Android Development (Kotlin)<br>
+                               • 4 Monate iOS Development (Swift)<br>
+                               • Abschlussprojekte für beide Plattformen
+                            </p>
                         </div>
                         <div class="timeline-dot"></div>
                         <div style="flex: 1;"></div>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div style="flex: 1;"></div>
                         <div class="timeline-dot"></div>
-                        <div class="timeline-card">
-                            <div class="timeline-date">2020 - Heute</div>
-                            <h3>Freiberuflicher Mobile Developer</h3>
-                            <p>Entwicklung von über 15 erfolgreichen Apps für verschiedene Kunden. Spezialisierung auf
-                               skalierbare Architekturen und User-Experience-Optimierung.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
                         <div class="timeline-card">
                             <div class="timeline-date">2024 - Heute</div>
-                            <h3>Tech Lead & Consultant</h3>
-                            <p>Beratung von Startups und Unternehmen bei der digitalen Transformation.
-                               Entwicklung von Mobile-First-Strategien und technischen Roadmaps.</p>
+                            <h3>Berufseinstieg & Weiterbildung</h3>
+                            <p>• Selbststudium Objective-C für Legacy iOS Apps<br>
+                               • Vertiefung Mobile Security & Verschlüsselung<br>
+                               • Entwicklung eigener Portfolio-Projekte<br>
+                               • Vorbereitung auf Junior Developer Position
+                            </p>
                         </div>
-                        <div class="timeline-dot"></div>
-                        <div style="flex: 1;"></div>
                     </div>
                 </div>
             </div>
@@ -1492,7 +1522,7 @@
         <section id="contact">
             <div class="section-header">
                 <h2>Let's Connect</h2>
-                <p>Ich freue mich auf spannende Projekte und neue Herausforderungen</p>
+                <p>Offen für Berufseinstieg als Junior Mobile Developer</p>
             </div>
             
             <div class="contact-grid">
@@ -1520,6 +1550,16 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
+            <h2 style="margin-bottom: 10px;">Bereit für den nächsten Schritt</h2>
+            <p style="max-width: 800px; margin: 0 auto 20px auto; color: #cbd5e1;">
+                Als Junior Mobile Developer suche ich eine Position, in der ich meine soliden Grundlagen ausbauen und von erfahrenen Entwicklern lernen kann. 
+                Besonders interessiert bin ich an Enterprise-Entwicklung und sicheren Mobile-Lösungen.
+            </p>
+            <div class="contact-info" style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom: 24px;">
+                <span class="tech-tag">📍 Dortmund (flexibel für Hybrid/Remote)</span>
+                <span class="tech-tag">✅ Sofort verfügbar</span>
+                <span class="tech-tag">🌍 Deutsch, Englisch, Kurdisch, Arabisch</span>
+            </div>
             <div class="footer-social">
                 <a href="https://github.com/SamiOmar" class="social-link" target="_blank">
                     <span>G</span>
