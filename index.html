@@ -499,6 +499,7 @@
             height: 200%;
             background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
+            pointer-events: none;
         }
 
         @keyframes pulse {
@@ -1018,8 +1019,8 @@
             </div>
 
             <p style="text-align: center; max-width: 800px; margin: 40px auto; line-height: 1.8; color: var(--text-light);">
-                Als spezialisierter Mobile Developer mit über 4 Jahren Erfahrung entwickle ich hochwertige iOS- und Android-Anwendungen, 
-                die durch intuitive Benutzeroberflächen und robuste Architektur überzeugen. Meine Expertise umfasst die gesamte 
+                Als spezialisierter Mobile Developer mit über 4 Jahren Erfahrung entwickle ich hochwertige iOS- und Android-Anwendungen,
+                die durch intuitive Benutzeroberflächen und robuste Architektur überzeugen. Meine Expertise umfasst die gesamte
                 Entwicklungskette von der Konzeption über das Design bis zur Veröffentlichung im App Store.
             </p>
         </section>
@@ -1083,7 +1084,7 @@
                     </div>
                     <div class="project-info">
                         <h3>Cash Loop - Quiz & Rewards 🎮</h3>
-                        <p>Innovative iOS-App mit Gamification-Elementen, Echtzeit-Multiplayer und In-App-Purchases. 
+                        <p>Innovative iOS-App mit Gamification-Elementen, Echtzeit-Multiplayer und In-App-Purchases.
                            Entwickelt mit SwiftUI und Firebase für skalierbare Performance.</p>
                         <div class="project-tech">
                             <span class="tech-tag">SwiftUI</span>
@@ -1104,7 +1105,7 @@
                     </div>
                     <div class="project-info">
                         <h3>Chigoo - Secure Chat Platform 💬</h3>
-                        <p>End-to-End verschlüsselte Messaging-App mit Voice/Video-Calls, File-Sharing und 
+                        <p>End-to-End verschlüsselte Messaging-App mit Voice/Video-Calls, File-Sharing und
                            Team-Collaboration Features. DSGVO-konform entwickelt.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Swift</span>
@@ -1125,7 +1126,7 @@
                     </div>
                     <div class="project-info">
                         <h3>Folk Music - Streaming App 🎵</h3>
-                        <p>Android Music-Streaming-Plattform mit offline Playback, personalisierte Playlists 
+                        <p>Android Music-Streaming-Plattform mit offline Playback, personalisierte Playlists
                            und KI-basierte Musikempfehlungen.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Kotlin</span>
@@ -1146,7 +1147,7 @@
                     </div>
                     <div class="project-info">
                         <h3>Notiz-App - Smart Notes 📝</h3>
-                        <p>iOS-App für intelligentes Notizmanagement mit Cloud-Sync, Tags, und Markdown-Support. 
+                        <p>iOS-App für intelligentes Notizmanagement mit Cloud-Sync, Tags, und Markdown-Support.
                            Komplettes UI/UX Design in Figma erstellt.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Figma</span>
@@ -1167,7 +1168,7 @@
                     </div>
                     <div class="project-info">
                         <h3>Shingal Music - Lo-Fi Streaming 🎧</h3>
-                        <p>Spezialisierte Music-Streaming-App für Lo-Fi und Chill-Music. 
+                        <p>Spezialisierte Music-Streaming-App für Lo-Fi und Chill-Music.
                            Innovative UI mit Fokus auf entspanntes Hörerlebnis.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Figma</span>
@@ -1189,17 +1190,17 @@
             
             <div class="code-showcase">
                 <div class="code-tabs">
-                    <button class="code-tab active" onclick="showCode('architecture')">Clean Architecture</button>
-                    <button class="code-tab" onclick="showCode('reactive')">Reactive Programming</button>
-                    <button class="code-tab" onclick="showCode('testing')">Unit Testing</button>
-                    <button class="code-tab" onclick="showCode('performance')">Performance</button>
+                    <button class="code-tab active" onclick="showCode('architecture', this)">Clean Architecture</button>
+                    <button class="code-tab" onclick="showCode('reactive', this)">Reactive Programming</button>
+                    <button class="code-tab" onclick="showCode('testing', this)">Unit Testing</button>
+                    <button class="code-tab" onclick="showCode('performance', this)">Performance</button>
                 </div>
 
                 <div id="architecture" class="code-content active">
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-title">MVVM Architecture with Repository Pattern</span>
-                            <button class="copy-button" onclick="copyCode('architecture')">Copy</button>
+                            <button class="copy-button" onclick="copyCode('architecture', this)">Copy</button>
                         </div>
                         <pre><span class="comment">// Clean Architecture Implementation</span>
 <span class="keyword">protocol</span> <span class="class">UserRepositoryProtocol</span> {
@@ -1238,7 +1239,7 @@
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-title">Combine Framework - Reactive Streams</span>
-                            <button class="copy-button" onclick="copyCode('reactive')">Copy</button>
+                            <button class="copy-button" onclick="copyCode('reactive', this)">Copy</button>
                         </div>
                         <pre><span class="comment">// Reactive Programming with Combine</span>
 <span class="keyword">class</span> <span class="class">SearchViewModel</span>: ObservableObject {
@@ -1257,8 +1258,8 @@
             .removeDuplicates()
             .filter { !$0.isEmpty }
             .flatMap { [<span class="keyword">weak self</span>] query -> AnyPublisher&lt;[SearchResult], Never&gt; <span class="keyword">in</span>
-                <span class="keyword">guard let self</span> = <span class="keyword">self else</span> { 
-                    <span class="keyword">return</span> Just([]).eraseToAnyPublisher() 
+                <span class="keyword">guard let self</span> = <span class="keyword">self else</span> {
+                    <span class="keyword">return</span> Just([]).eraseToAnyPublisher()
                 }
                 
                 <span class="keyword">return self</span>.searchService
@@ -1277,7 +1278,7 @@
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-title">Comprehensive Unit Testing</span>
-                            <button class="copy-button" onclick="copyCode('testing')">Copy</button>
+                            <button class="copy-button" onclick="copyCode('testing', this)">Copy</button>
                         </div>
                         <pre><span class="comment">// Test-Driven Development Example</span>
 <span class="keyword">import</span> XCTest
@@ -1318,7 +1319,7 @@
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-title">Performance Optimization</span>
-                            <button class="copy-button" onclick="copyCode('performance')">Copy</button>
+                            <button class="copy-button" onclick="copyCode('performance', this)">Copy</button>
                         </div>
                         <pre><span class="comment">// Efficient List Rendering with Lazy Loading</span>
 <span class="keyword">struct</span> <span class="class">OptimizedListView</span>: View {
@@ -1372,7 +1373,7 @@
                         <div class="timeline-card">
                             <div class="timeline-date">2023 - 2024</div>
                             <h3>IT-Fachkraft Ausbildung</h3>
-                            <p>Intensive 2300-stündige Weiterbildung am Syntax Institut. Spezialisierung auf iOS & Android Development 
+                            <p>Intensive 2300-stündige Weiterbildung am Syntax Institut. Spezialisierung auf iOS & Android Development
                                mit Fokus auf moderne Architekturen und Best Practices.</p>
                         </div>
                         <div class="timeline-dot"></div>
@@ -1387,7 +1388,7 @@
                         <div class="timeline-card">
                             <div class="timeline-date">2020 - Heute</div>
                             <h3>Freiberuflicher Mobile Developer</h3>
-                            <p>Entwicklung von über 15 erfolgreichen Apps für verschiedene Kunden. Spezialisierung auf 
+                            <p>Entwicklung von über 15 erfolgreichen Apps für verschiedene Kunden. Spezialisierung auf
                                skalierbare Architekturen und User-Experience-Optimierung.</p>
                         </div>
                     </div>
@@ -1398,7 +1399,7 @@
                         <div class="timeline-card">
                             <div class="timeline-date">2024 - Heute</div>
                             <h3>Tech Lead & Consultant</h3>
-                            <p>Beratung von Startups und Unternehmen bei der digitalen Transformation. 
+                            <p>Beratung von Startups und Unternehmen bei der digitalen Transformation.
                                Entwicklung von Mobile-First-Strategien und technischen Roadmaps.</p>
                         </div>
                         <div class="timeline-dot"></div>
@@ -1472,31 +1473,36 @@
             navMenu.classList.toggle('active');
         }
 
-        // Code Tab Switching - Simple Working Version
-        function showCode(language) {
-            // Hide all code contents
-            document.getElementById('architecture').style.display = 'none';
-            document.getElementById('reactive').style.display = 'none';
-            document.getElementById('testing').style.display = 'none';
-            document.getElementById('performance').style.display = 'none';
-            
+        // Code Tab Switching - Robust Version
+        function showCode(language, buttonEl) {
+            // Hide all code contents and remove active class
+            var contents = document.getElementsByClassName('code-content');
+            for (var c = 0; c < contents.length; c++) {
+                contents[c].style.display = 'none';
+                contents[c].classList.remove('active');
+            }
+
             // Remove active class from all tabs
             var tabs = document.getElementsByClassName('code-tab');
             for (var i = 0; i < tabs.length; i++) {
                 tabs[i].classList.remove('active');
             }
-            
-            // Show selected content
-            document.getElementById(language).style.display = 'block';
-            
-            // Add active class to clicked tab
-            if (event && event.target) {
-                event.target.classList.add('active');
+
+            // Show selected content and mark active
+            var target = document.getElementById(language);
+            if (target) {
+                target.style.display = 'block';
+                target.classList.add('active');
+            }
+
+            // Add active class to clicked tab explicitly
+            if (buttonEl) {
+                buttonEl.classList.add('active');
             }
         }
 
-        // Copy Code Function
-        function copyCode(section) {
+        // Copy Code Function (no reliance on global event)
+        function copyCode(section, buttonEl) {
             const codeBlock = document.querySelector(`#${section} pre`);
             const textArea = document.createElement('textarea');
             textArea.value = codeBlock.textContent;
@@ -1505,11 +1511,15 @@
             document.execCommand('copy');
             document.body.removeChild(textArea);
             
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = 'Copied!';
+            const button = buttonEl;
+            const originalText = button ? button.textContent : '';
+            if (button) {
+                button.textContent = 'Copied!';
+            }
             setTimeout(() => {
-                button.textContent = originalText;
+                if (button) {
+                    button.textContent = originalText;
+                }
             }, 2000);
         }
 
