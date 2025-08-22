@@ -849,7 +849,62 @@
             }
         }
 
-        /* Metrics Grid */
+        /* Print Styles */
+        @media print {
+            nav, .hero, footer {
+                display: none;
+            }
+
+            .container {
+                margin-top: 0;
+                box-shadow: none;
+            }
+
+            .project-card, .skill-card {
+                break-inside: avoid;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus Styles */
+        a:focus, button:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Performance Metrics */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1080,6 +1135,48 @@
                         </div>
                     </div>
                 </a>
+
+                <a href="projekt4.html" class="project-card" style="text-decoration: none; color: inherit;">
+                    <img src="assets/images/NotizApp_figam.png" alt="Notiz-App Design" class="project-image">
+                    <div class="project-overlay">
+                        <div style="color: white;">
+                            <h3>UI/UX Design</h3>
+                            <p>Figma Prototype</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Notiz-App - Smart Notes 📝</h3>
+                        <p>iOS-App für intelligentes Notizmanagement mit Cloud-Sync, Tags, und Markdown-Support. 
+                           Komplettes UI/UX Design in Figma erstellt.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">SwiftUI</span>
+                            <span class="tech-tag">iCloud</span>
+                            <span class="tech-tag">CoreData</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="projekt5.html" class="project-card" style="text-decoration: none; color: inherit;">
+                    <img src="assets/images/shingal_musiga_lofi_figma.png" alt="Shingal Music" class="project-image">
+                    <div class="project-overlay">
+                        <div style="color: white;">
+                            <h3>Music Streaming</h3>
+                            <p>Design Concept</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Shingal Music - Lo-Fi Streaming 🎧</h3>
+                        <p>Spezialisierte Music-Streaming-App für Lo-Fi und Chill-Music. 
+                           Innovative UI mit Fokus auf entspanntes Hörerlebnis.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Swift</span>
+                            <span class="tech-tag">AVFoundation</span>
+                            <span class="tech-tag">Spotify API</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </section>
 
@@ -1092,177 +1189,169 @@
             
             <div class="code-showcase">
                 <div class="code-tabs">
-                    <button class="code-tab active" onclick="showCode('swift')">Swift (iOS)</button>
-                    <button class="code-tab" onclick="showCode('kotlin')">Kotlin (Android)</button>
-                    <button class="code-tab" onclick="showCode('swiftui')">SwiftUI</button>
-                    <button class="code-tab" onclick="showCode('firebase')">Firebase</button>
+                    <button class="code-tab active" onclick="showCode('architecture')">Clean Architecture</button>
+                    <button class="code-tab" onclick="showCode('reactive')">Reactive Programming</button>
+                    <button class="code-tab" onclick="showCode('testing')">Unit Testing</button>
+                    <button class="code-tab" onclick="showCode('performance')">Performance</button>
                 </div>
 
-                <div id="swift" class="code-content active">
+                <div id="architecture" class="code-content active">
                     <div class="code-block">
                         <div class="code-header">
-                            <span class="code-title">Swift - Chigoo Chat App Message System</span>
-                            <button class="copy-button" onclick="copyCode('swift')">Copy</button>
+                            <span class="code-title">MVVM Architecture with Repository Pattern</span>
+                            <button class="copy-button" onclick="copyCode('architecture')">Copy</button>
                         </div>
-                        <pre><span class="comment">// Message Model mit Codable für Firebase</span>
-<span class="keyword">struct</span> <span class="class">Message</span>: Codable, Identifiable {
-    <span class="keyword">let</span> id: String
-    <span class="keyword">let</span> text: String
-    <span class="keyword">let</span> senderId: String
-    <span class="keyword">let</span> timestamp: Date
-    <span class="keyword">var</span> isRead: Bool = <span class="keyword">false</span>
+                        <pre><span class="comment">// Clean Architecture Implementation</span>
+<span class="keyword">protocol</span> <span class="class">UserRepositoryProtocol</span> {
+    <span class="keyword">func</span> <span class="function">fetchUser</span>(id: String) <span class="keyword">async throws</span> -> User
+    <span class="keyword">func</span> <span class="function">updateUser</span>(_ user: User) <span class="keyword">async throws</span>
 }
 
-<span class="comment">// Chat Service mit async/await</span>
-<span class="keyword">class</span> <span class="class">ChatService</span>: ObservableObject {
-    <span class="keyword">@Published</span> <span class="keyword">var</span> messages: [Message] = []
-    <span class="keyword">private let</span> db = Firestore.firestore()
+<span class="keyword">class</span> <span class="class">UserViewModel</span>: ObservableObject {
+    <span class="keyword">@Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> state: ViewState = .idle
+    <span class="keyword">private let</span> repository: UserRepositoryProtocol
+    <span class="keyword">private var</span> cancellables = Set&lt;AnyCancellable&gt;()
     
-    <span class="keyword">func</span> <span class="function">sendMessage</span>(_ text: String, to userId: String) <span class="keyword">async throws</span> {
-        <span class="keyword">let</span> message = Message(
-            id: UUID().uuidString,
-            text: text,
-            senderId: Auth.auth().currentUser?.uid ?? <span class="string">""</span>,
-            timestamp: Date()
-        )
-        
-        <span class="keyword">try await</span> db.collection(<span class="string">"chats"</span>)
-            .document(userId)
-            .collection(<span class="string">"messages"</span>)
-            .addDocument(data: message.asDictionary())
+    <span class="keyword">init</span>(repository: UserRepositoryProtocol = UserRepository()) {
+        <span class="keyword">self</span>.repository = repository
+        setupBindings()
     }
-}</pre>
-                    </div>
-                </div>
-
-                <div id="kotlin" class="code-content">
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-title">Kotlin - Folk Music App MVVM Architecture</span>
-                            <button class="copy-button" onclick="copyCode('kotlin')">Copy</button>
-                        </div>
-                        <pre><span class="comment">// ViewModel mit Kotlin Coroutines</span>
-<span class="keyword">class</span> <span class="class">MusicViewModel</span>(
-    <span class="keyword">private val</span> repository: MusicRepository
-) : ViewModel() {
     
-    <span class="keyword">private val</span> _musicList = MutableLiveData&lt;List&lt;Song&gt;&gt;()
-    <span class="keyword">val</span> musicList: LiveData&lt;List&lt;Song&gt;&gt; = _musicList
-    
-    <span class="keyword">private val</span> _isPlaying = MutableStateFlow(<span class="keyword">false</span>)
-    <span class="keyword">val</span> isPlaying = _isPlaying.asStateFlow()
-    
-    <span class="keyword">fun</span> <span class="function">loadMusic</span>() {
-        viewModelScope.launch {
-            <span class="keyword">try</span> {
-                <span class="keyword">val</span> songs = repository.getAllSongs()
-                _musicList.value = songs
-            } <span class="keyword">catch</span> (e: Exception) {
-                Log.e(<span class="string">"MusicViewModel"</span>, <span class="string">"Error: ${e.message}"</span>)
+    <span class="keyword">@MainActor</span>
+    <span class="keyword">func</span> <span class="function">loadUser</span>(id: String) {
+        state = .loading
+        
+        Task {
+            <span class="keyword">do</span> {
+                <span class="keyword">let</span> user = <span class="keyword">try await</span> repository.fetchUser(id: id)
+                state = .loaded(user)
+            } <span class="keyword">catch</span> {
+                state = .error(error)
             }
         }
     }
+}</pre>
+                    </div>
+                </div>
+
+                <div id="reactive" class="code-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Combine Framework - Reactive Streams</span>
+                            <button class="copy-button" onclick="copyCode('reactive')">Copy</button>
+                        </div>
+                        <pre><span class="comment">// Reactive Programming with Combine</span>
+<span class="keyword">class</span> <span class="class">SearchViewModel</span>: ObservableObject {
+    <span class="keyword">@Published</span> <span class="keyword">var</span> searchText = <span class="string">""</span>
+    <span class="keyword">@Published</span> <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> results: [SearchResult] = []
     
-    <span class="keyword">fun</span> <span class="function">playSong</span>(song: Song) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.playSong(song)
-            _isPlaying.emit(<span class="keyword">true</span>)
+    <span class="keyword">private let</span> searchService: SearchService
+    <span class="keyword">private var</span> cancellables = Set&lt;AnyCancellable&gt;()
+    
+    <span class="keyword">init</span>(searchService: SearchService) {
+        <span class="keyword">self</span>.searchService = searchService
+        
+        <span class="comment">// Debounce search input and filter empty strings</span>
+        $searchText
+            .debounce(for: .milliseconds(<span class="number">300</span>), scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .filter { !$0.isEmpty }
+            .flatMap { [<span class="keyword">weak self</span>] query -> AnyPublisher&lt;[SearchResult], Never&gt; <span class="keyword">in</span>
+                <span class="keyword">guard let self</span> = <span class="keyword">self else</span> { 
+                    <span class="keyword">return</span> Just([]).eraseToAnyPublisher() 
+                }
+                
+                <span class="keyword">return self</span>.searchService
+                    .search(query: query)
+                    .catch { _ <span class="keyword">in</span> Just([]) }
+                    .eraseToAnyPublisher()
+            }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$results)
+    }
+}</pre>
+                    </div>
+                </div>
+
+                <div id="testing" class="code-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Comprehensive Unit Testing</span>
+                            <button class="copy-button" onclick="copyCode('testing')">Copy</button>
+                        </div>
+                        <pre><span class="comment">// Test-Driven Development Example</span>
+<span class="keyword">import</span> XCTest
+<span class="keyword">@testable import</span> MyApp
+
+<span class="keyword">class</span> <span class="class">UserViewModelTests</span>: XCTestCase {
+    <span class="keyword">var</span> sut: UserViewModel!
+    <span class="keyword">var</span> mockRepository: MockUserRepository!
+    
+    <span class="keyword">override func</span> <span class="function">setUp</span>() {
+        <span class="keyword">super</span>.setUp()
+        mockRepository = MockUserRepository()
+        sut = UserViewModel(repository: mockRepository)
+    }
+    
+    <span class="keyword">func</span> <span class="function">testLoadUserSuccess</span>() <span class="keyword">async</span> {
+        <span class="comment">// Given</span>
+        <span class="keyword">let</span> expectedUser = User(id: <span class="string">"123"</span>, name: <span class="string">"Test User"</span>)
+        mockRepository.userToReturn = expectedUser
+        
+        <span class="comment">// When</span>
+        <span class="keyword">await</span> sut.loadUser(id: <span class="string">"123"</span>)
+        
+        <span class="comment">// Then</span>
+        <span class="keyword">switch</span> sut.state {
+        <span class="keyword">case</span> .loaded(<span class="keyword">let</span> user):
+            XCTAssertEqual(user.id, expectedUser.id)
+            XCTAssertEqual(user.name, expectedUser.name)
+        <span class="keyword">default</span>:
+            XCTFail(<span class="string">"Expected loaded state"</span>)
         }
     }
 }</pre>
                     </div>
                 </div>
 
-                <div id="swiftui" class="code-content">
+                <div id="performance" class="code-content">
                     <div class="code-block">
                         <div class="code-header">
-                            <span class="code-title">SwiftUI - Cash Loop Quiz View</span>
-                            <button class="copy-button" onclick="copyCode('swiftui')">Copy</button>
+                            <span class="code-title">Performance Optimization</span>
+                            <button class="copy-button" onclick="copyCode('performance')">Copy</button>
                         </div>
-                        <pre><span class="comment">// Quiz View mit SwiftUI Animationen</span>
-<span class="keyword">struct</span> <span class="class">QuizView</span>: View {
-    <span class="keyword">@StateObject</span> <span class="keyword">private var</span> viewModel = QuizViewModel()
-    <span class="keyword">@State</span> <span class="keyword">private var</span> selectedAnswer: Int? = <span class="keyword">nil</span>
-    <span class="keyword">@State</span> <span class="keyword">private var</span> animateCorrect = <span class="keyword">false</span>
+                        <pre><span class="comment">// Efficient List Rendering with Lazy Loading</span>
+<span class="keyword">struct</span> <span class="class">OptimizedListView</span>: View {
+    <span class="keyword">@StateObject</span> <span class="keyword">private var</span> viewModel = ListViewModel()
+    <span class="keyword">@State</span> <span class="keyword">private var</span> visibleRows = Set&lt;Int&gt;()
     
     <span class="keyword">var</span> body: <span class="keyword">some</span> View {
-        VStack(spacing: <span class="number">20</span>) {
-            <span class="comment">// Progress Bar</span>
-            ProgressView(value: viewModel.progress)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                .scaleEffect(y: <span class="number">2</span>)
-                .padding()
-            
-            <span class="comment">// Question Card</span>
-            VStack(alignment: .leading, spacing: <span class="number">15</span>) {
-                Text(viewModel.currentQuestion.text)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                
-                ForEach(viewModel.currentQuestion.answers.indices, 
-                        id: \.<span class="keyword">self</span>) { index <span class="keyword">in</span>
-                    AnswerButton(
-                        text: viewModel.currentQuestion.answers[index],
-                        isSelected: selectedAnswer == index,
-                        isCorrect: animateCorrect && 
-                                 index == viewModel.correctIndex
-                    ) {
-                        withAnimation(.spring()) {
-                            selectedAnswer = index
-                            checkAnswer(index)
+        ScrollView {
+            LazyVStack(spacing: <span class="number">0</span>) {
+                ForEach(viewModel.items.indices, id: \.<span class="keyword">self</span>) { index <span class="keyword">in</span>
+                    ItemRow(item: viewModel.items[index])
+                        .onAppear {
+                            visibleRows.insert(index)
+                            <span class="comment">// Prefetch next batch when approaching end</span>
+                            <span class="keyword">if</span> index == viewModel.items.count - <span class="number">5</span> {
+                                Task {
+                                    <span class="keyword">await</span> viewModel.loadMoreItems()
+                                }
+                            }
                         }
-                    }
+                        .onDisappear {
+                            visibleRows.remove(index)
+                        }
+                        .task {
+                            <span class="comment">// Load high-res image only when visible</span>
+                            <span class="keyword">if</span> visibleRows.contains(index) {
+                                <span class="keyword">await</span> viewModel.loadHighResImage(for: index)
+                            }
+                        }
                 }
             }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: <span class="number">20</span>)
-                    .fill(Color.white)
-                    .shadow(radius: <span class="number">10</span>)
-            )
         }
-    }
-}</pre>
-                    </div>
-                </div>
-
-                <div id="firebase" class="code-content">
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-title">Firebase Authentication Service</span>
-                            <button class="copy-button" onclick="copyCode('firebase')">Copy</button>
-                        </div>
-                        <pre><span class="comment">// Firebase Auth Service mit Error Handling</span>
-<span class="keyword">class</span> <span class="class">AuthenticationService</span>: ObservableObject {
-    <span class="keyword">@Published</span> <span class="keyword">var</span> user: User?
-    <span class="keyword">@Published</span> <span class="keyword">var</span> isAuthenticated = <span class="keyword">false</span>
-    
-    <span class="keyword">init</span>() {
-        setupAuthListener()
-    }
-    
-    <span class="keyword">private func</span> <span class="function">setupAuthListener</span>() {
-        Auth.auth().addStateDidChangeListener { _, user <span class="keyword">in</span>
-            <span class="keyword">self</span>.user = user
-            <span class="keyword">self</span>.isAuthenticated = user != <span class="keyword">nil</span>
-        }
-    }
-    
-    <span class="keyword">func</span> <span class="function">signIn</span>(email: String, password: String) <span class="keyword">async throws</span> -> AuthDataResult {
-        <span class="keyword">do</span> {
-            <span class="keyword">let</span> result = <span class="keyword">try await</span> Auth.auth().signIn(
-                withEmail: email,
-                password: password
-            )
-            
-            <span class="comment">// Update user profile in Firestore</span>
-            <span class="keyword">try await</span> updateUserProfile(userId: result.user.uid)
-            
-            <span class="keyword">return</span> result
-        } <span class="keyword">catch</span> {
-            <span class="keyword">throw</span> AuthError.signInFailed(error.localizedDescription)
-        }
+        .scrollIndicators(.hidden)
     }
 }</pre>
                     </div>
@@ -1383,27 +1472,22 @@
             navMenu.classList.toggle('active');
         }
 
-        // Code Tab Switching - Einfache funktionierende Version
+        // Code Tab Switching - Simple Working Version
         function showCode(language) {
             // Hide all code contents
-            var allContents = document.getElementsByClassName('code-content');
-            for (var i = 0; i < allContents.length; i++) {
-                allContents[i].style.display = 'none';
-                allContents[i].classList.remove('active');
-            }
+            document.getElementById('architecture').style.display = 'none';
+            document.getElementById('reactive').style.display = 'none';
+            document.getElementById('testing').style.display = 'none';
+            document.getElementById('performance').style.display = 'none';
             
             // Remove active class from all tabs
-            var allTabs = document.getElementsByClassName('code-tab');
-            for (var i = 0; i < allTabs.length; i++) {
-                allTabs[i].classList.remove('active');
+            var tabs = document.getElementsByClassName('code-tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
             }
             
             // Show selected content
-            var selectedContent = document.getElementById(language);
-            if (selectedContent) {
-                selectedContent.style.display = 'block';
-                selectedContent.classList.add('active');
-            }
+            document.getElementById(language).style.display = 'block';
             
             // Add active class to clicked tab
             if (event && event.target) {
@@ -1413,23 +1497,20 @@
 
         // Copy Code Function
         function copyCode(section) {
-            const codeBlock = document.querySelector('#' + section + ' pre');
-            if (codeBlock) {
-                const textArea = document.createElement('textarea');
-                textArea.value = codeBlock.textContent;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                
-                // Update button text
-                const button = event.target;
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                setTimeout(function() {
-                    button.textContent = originalText;
-                }, 2000);
-            }
+            const codeBlock = document.querySelector(`#${section} pre`);
+            const textArea = document.createElement('textarea');
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 2000);
         }
 
         // Smooth scroll for navigation links
@@ -1475,10 +1556,9 @@
             observer.observe(section);
         });
 
-        // Initialize on page load
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Make sure first tab content is visible
-            var firstContent = document.getElementById('swift');
+            const firstContent = document.getElementById('architecture');
             if (firstContent) {
                 firstContent.style.display = 'block';
                 firstContent.classList.add('active');
