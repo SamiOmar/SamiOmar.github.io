@@ -84,6 +84,7 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             background: linear-gradient(135deg, rgba(0, 102, 255, 0.95) 0%, rgba(0, 212, 255, 0.95) 100%);
             display: flex;
             align-items: center;
@@ -513,6 +514,7 @@
             margin-bottom: 30px;
             overflow-x: auto;
             padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .code-tab {
@@ -787,6 +789,10 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -813,6 +819,8 @@
 
             .mobile-menu-btn {
                 display: block;
+                font-size: 2rem;
+                padding: 8px 12px;
             }
 
             .timeline::before {
@@ -834,6 +842,7 @@
 
             .container {
                 padding: 40px 15px;
+                margin-top: -60px;
             }
 
             .section-header h2 {
@@ -842,11 +851,81 @@
 
             .code-showcase {
                 padding: 20px;
+                margin: 40px 0;
             }
 
             .code-block {
                 font-size: 12px;
                 padding: 15px;
+            }
+
+            .profile-image {
+                width: 130px;
+                height: 130px;
+            }
+
+            .nav-container {
+                padding: calc(15px + env(safe-area-inset-top)) 20px 15px 20px;
+            }
+
+            .nav-menu a {
+                font-size: 1.1rem;
+                padding: 12px 0;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .code-tabs {
+                gap: 10px;
+                padding-bottom: 8px;
+            }
+
+            .code-tab {
+                padding: 10px 16px;
+                min-height: 44px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .profile-image {
+                width: 110px;
+                height: 110px;
+            }
+
+            .skills-grid {
+                gap: 20px;
+            }
+
+            .skill-card {
+                padding: 20px;
+            }
+
+            .projects-grid {
+                gap: 24px;
+            }
+
+            .project-image {
+                height: 200px;
+            }
+
+            .code-block {
+                font-size: 11px;
+                padding: 12px;
+            }
+
+            .code-tab {
+                padding: 10px 14px;
             }
         }
 
